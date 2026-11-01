@@ -25,3 +25,7 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+
+# Local editor/preview config
+.claude/
+outputs/dashboard_synthetic.html

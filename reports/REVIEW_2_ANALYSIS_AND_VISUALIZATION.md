@@ -20,7 +20,7 @@ Parquet); events 137,765 rows (Parquet).
 84 of 377 players are eligible at 180 minutes (17 at 900) — sensitivity table in notebook §7.
 
 ## 3. Interactive visualizations implemented
-38 figures in the executed notebook (catalogue: `VISUALIZATION_CATALOG.md`); Plotly dropdowns for leaderboard,
+57 figures in the executed notebook, including season, player, match and substitution dashboards and a one-page presentation dashboard (`outputs/dashboard.html`) (catalogue: `VISUALIZATION_CATALOG.md`); Plotly dropdowns for leaderboard,
 scatter axes, distributions; ipywidgets for player, formation/availability and substitution scenario.
 `[Insert screenshots]`
 
@@ -42,9 +42,9 @@ Manager identity for 34/34 matches from source metadata. Xabi Alonso (34 matches
 with ≤ 2 matches shown as descriptive only, pooled as a labelled reference.
 
 ## 8. Validation / test evidence
-`python -m pytest -q` → **91 passed** (parsing, minutes edge cases incl. red cards / half-time / extra time,
+`python -m pytest -q` → **111 passed** (parsing, minutes edge cases incl. red cards / half-time / extra time,
 features, XI constraints, substitution eligibility & game state, validation, empty-state charts, end-to-end synthetic
-integration). Notebook executed top-to-bottom in a fresh kernel: 46 code cells, 0 errors.
+integration). Notebook executed top-to-bottom in a fresh kernel: 51 code cells, 0 errors.
 
 ## 9. Limitations and next actions
 Limitations in `PROJECT_REPORT.md` §19. Next actions: `[To be completed after actual review]`.

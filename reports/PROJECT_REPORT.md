@@ -122,7 +122,7 @@ composite over the last five appearances. Workload proxies: minutes in previous 
 starts — dataset matches only.
 
 ## 13. Visualization methodology and chart justification
-38 Plotly figures in one editorial theme (neutral background, navy/teal/amber/red palette, sequential and diverging
+57 Plotly figures (including four composite dashboards and a one-page HTML presentation dashboard) in one editorial theme (neutral background, navy/teal/amber/red palette, sequential and diverging
 scales where ordered). Each chart answers a research question and checks its inputs (empty-state figures instead of
 errors). Interaction: hover provenance (minutes, percentile, coverage), in-chart dropdowns (survive HTML export),
 ipywidgets for player, formation/availability and substitution scenarios. Pitch charts use the StatsBomb 120×80
@@ -155,7 +155,10 @@ multi-change windows, score-state shares, like-for-like share, response time aft
 
 ## 17. Results and observations (executed real-data run)
 **Team context.** Leverkusen: 28 W, 6 D, 0 L, 90 points, goals 89-24, xG 72.7-27.8, possession proxy 61.7 %, field
-tilt 67.6 %. Starting formations: 3-4-2-1 in 25 matches (2.84 points per match, xG 2.05 for / 0.74 against), 3-4-3
+tilt 67.6 %. A shot-based expected-points model (each match simulated 5,000 times from shot xG) gives 74.8 xPts,
+so the team out-performed its chance quality by about 15 points — attributable to finishing, goalkeeping,
+game-state management and chance, not to luck alone. 57 % of its pressures were applied in the opponent half
+(pressure heatmap, notebook §10). Starting formations: 3-4-2-1 in 25 matches (2.84 points per match, xG 2.05 for / 0.74 against), 3-4-3
 in 8 (2.00 ppm), 3-4-1-2 once.
 
 **RQ1.** Median per-90 profiles differ sharply by role family: forwards have the highest median xG/90 (0.32),
@@ -194,11 +197,11 @@ sending-off or another decision by the same team, and the opponent also changed 
 changes are small and inconsistent across states; they are reported as associations only.
 
 ## 18. Evaluation and validation
-* 91 unit/integration tests pass (`python -m pytest -q`), covering parsing with missing keys, substitution
+* 111 unit/integration tests pass (`python -m pytest -q`), covering parsing with missing keys, substitution
   direction, ID preservation, coordinate order, minutes for starters/subs/red cards/half-time/extra time/unknown
   timing, per-90 and zero-minute protection, role normalisation, XI constraints and determinism, substitution
   eligibility, team-perspective game state, configurable rules, validation rules and empty-state charts.
-* The notebook executes top-to-bottom in a fresh kernel (46 code cells, 0 errors, ≈ 1 minute with cached data).
+* The notebook executes top-to-bottom in a fresh kernel (51 code cells, 0 errors, ≈ 1 minute with cached data).
 * XI and substitution evaluations are *descriptive agreement* with observed decisions; historical decisions are not
   treated as optimal labels (selection bias).
 * The model uses a chronological split, a domain-constrained decision rule (top 11 per match) and a leakage audit.

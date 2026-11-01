@@ -10,12 +10,13 @@
 
 | Deliverable | Path |
 |---|---|
-| Main notebook (executed, 68 cells, ~38 interactive charts) | `notebooks/Football_Managerial_Decision_Analytics.ipynb` |
+| Main notebook (executed, 75 cells, 57 interactive charts incl. 4 dashboards) | `notebooks/Football_Managerial_Decision_Analytics.ipynb` |
 | Python package (ingestion → parsing → validation → features → decisions → charts → reports) | `src/football_analytics/` |
-| Tests (91, offline) | `tests/` |
+| Tests (111, offline) | `tests/` |
 | Build / execute / Colab-bundle scripts | `scripts/` |
 | Project report, review templates, viva prep, visualisation catalogue | `reports/` |
 | Auto-generated dataset card + data dictionary (from the executed run) | `reports/DATASET_CARD.md`, `reports/DATA_DICTIONARY.md` |
+| **One-page presentation dashboard** (open in any browser) | `outputs/dashboard.html` |
 | Processed tables / run config / manifest / chart HTML | `data/processed/`, `outputs/exports/`, `outputs/figures/` |
 | Build log (what was done, tested, fixed, still limited) | `BUILD_LOG.md` |
 
@@ -95,7 +96,7 @@ StatsBomb raw JSON ──► ingestion.DataStore (cache, retries, SHA-256 manife
 |---|---|
 | Dataset collection (5) | Notebook §3-4 (catalogue, manifest with SHA-256, counts), `reports/DATASET_CARD.md`, `reports/DATA_DICTIONARY.md`, `data/README.md`, `outputs/exports/source_manifest.csv`, source register & attribution |
 | Review 1 (5) | `reports/REVIEW_1_DATA_COLLECTION.md` (problem, RQs, source rationale, audit, quality report, prototypes, feedback template); notebook §1-6 |
-| Review 2 (5) | `reports/REVIEW_2_ANALYSIS_AND_VISUALIZATION.md`; notebook §7-14; `tests/` (91 passing) |
+| Review 2 (5) | `reports/REVIEW_2_ANALYSIS_AND_VISUALIZATION.md`; notebook §7-14; `tests/` (111 passing) |
 | Presentation (3) | 7-minute outline in `reports/VIVA_PREPARATION.md`; narrative order of the notebook |
 | Demo (3) | Fresh-runtime execution (`scripts/execute_notebook.py`), Plotly dropdowns + live widgets (player, formation/availability, substitution scenario), offline cache / synthetic fallback |
 | Report (2) | `reports/PROJECT_REPORT.md` (22 sections, cited, results from the executed run) |

@@ -67,6 +67,12 @@ def enrich_substitutions(bundle: Any) -> pd.DataFrame:
     subs["off_role"] = subs["off_position"].map(role_for_position)
     subs["on_role"] = subs["on_position"].map(role_for_position)
     subs["like_for_like"] = subs["off_role"] == subs["on_role"]
+    # Lineup-file display names (nickname when published) — event names are full legal names.
+    disp = app.drop_duplicates(["match_id", "player_id"]).set_index(["match_id", "player_id"])["player_name"]
+    subs["player_on_display"] = [disp.get((a, b), n) for a, b, n in zip(subs["match_id"], subs["player_on_id"],
+                                                                         subs["player_on_name"])]
+    subs["player_off_display"] = [disp.get((a, b), n) for a, b, n in zip(subs["match_id"], subs["player_off_id"],
+                                                                          subs["player_off_name"])]
     subs = subs.sort_values(["match_id", "team_id", "index"])
     subs["sub_number"] = subs.groupby(["match_id", "team_id"]).cumcount() + 1
     subs["window_number"] = 0

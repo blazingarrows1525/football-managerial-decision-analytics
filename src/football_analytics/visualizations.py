@@ -105,20 +105,27 @@ def source_note(fig: go.Figure, text: str) -> go.Figure:
 # Pitch
 # ---------------------------------------------------------------------------
 def draw_pitch(fig: go.Figure | None = None, length: float = PITCH_LENGTH, width: float = PITCH_WIDTH,
-               row: int | None = None, col: int | None = None, half: bool = False) -> go.Figure:
-    """Draw a StatsBomb-dimension pitch (120 x 80, y downwards) with standard markings."""
+               row: int | None = None, col: int | None = None, half: bool = False,
+               lines_on_top: bool = False) -> go.Figure:
+    """Draw a StatsBomb-dimension pitch (120 x 80, y downwards) with standard markings.
+
+    ``lines_on_top`` draws the markings above the data layer (for heatmaps).
+    """
     fig = fig or go.Figure()
+    layer = "above" if lines_on_top else "below"
     lc = dict(color=PITCH_LINE, width=1.4)
     kw = dict(row=row, col=col) if row else {}
     sx, sy = length / 120, width / 80
 
-    def rect(x0, y0, x1, y1, fill=None):
+    def rect(x0, y0, x1, y1, fill=None, lay=None):
         fig.add_shape(type="rect", x0=x0 * sx, y0=y0 * sy, x1=x1 * sx, y1=y1 * sy, line=lc,
-                      fillcolor=fill or "rgba(0,0,0,0)", layer="below", **kw)
+                      fillcolor=fill or "rgba(0,0,0,0)", layer=lay or layer, **kw)
 
-    rect(0, 0, 120, 80, PITCH_FILL)
-    fig.add_shape(type="line", x0=60 * sx, y0=0, x1=60 * sx, y1=80 * sy, line=lc, layer="below", **kw)
-    fig.add_shape(type="circle", x0=50 * sx, y0=30 * sy, x1=70 * sx, y1=50 * sy, line=lc, layer="below", **kw)
+    rect(0, 0, 120, 80, PITCH_FILL, "below")
+    if lines_on_top:
+        rect(0, 0, 120, 80)
+    fig.add_shape(type="line", x0=60 * sx, y0=0, x1=60 * sx, y1=80 * sy, line=lc, layer=layer, **kw)
+    fig.add_shape(type="circle", x0=50 * sx, y0=30 * sy, x1=70 * sx, y1=50 * sy, line=lc, layer=layer, **kw)
     for x0, x1 in ((0, 18), (102, 120)):
         rect(x0, 18, x1, 62)
     for x0, x1 in ((0, 6), (114, 120)):

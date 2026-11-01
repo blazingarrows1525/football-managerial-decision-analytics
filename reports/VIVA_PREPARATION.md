@@ -62,6 +62,12 @@ Numbers below come from the executed default run (StatsBomb 1. Bundesliga 2023/2
 25. **What should a coach do with a recommendation?** Treat it as a structured second opinion: check the evidence and
     coverage, add information we lack (fitness, opponent plan), then decide.
 
+26. **What are expected points (xPts)?** Each match is simulated 5,000 times, treating every shot as a Bernoulli
+    trial with its xG; xPts = 3·P(win) + P(draw). Leverkusen: 90 points vs 74.8 xPts (+15.2). It summarises
+    chance quality; it assumes independent shots and ignores game state, so it is not a 'luck' measure.
+27. **What do the pitch heatmaps show?** Share of a player's or team's located actions per 10×10-unit zone
+    (StatsBomb 120×80 frame, attacking left → right). Leverkusen applied 57 % of pressures in the opponent half.
+
 ## B. 5–7 minute presentation outline
 | Time | Content | Notebook |
 |---|---|---|
@@ -75,7 +81,8 @@ Numbers below come from the executed default run (StatsBomb 1. Bundesliga 2023/2
 | 5:30-6:00 | Findings, limitations, causality note, conclusion | §15, §17 |
 
 ## C. Live-demo sequence (works offline once cached)
-1. Open the executed notebook (outputs already present) — no network required to show results.
+1. Open `outputs/dashboard.html` in a browser for the opening overview (season KPIs, player card, squad matrix,
+   rotation, XI, match, pressing, substitutions), then switch to the executed notebook for detail.
 2. If time allows a fresh run: set `OFFLINE = True` (cache in `data/raw/statsbomb/`), *Run all* (~1 min).
 3. Leaderboard → switch metric in the dropdown; scatter → change x/y axes; hover a point (minutes, percentile).
 4. Player selector widget → choose another Leverkusen player → radar + form update.

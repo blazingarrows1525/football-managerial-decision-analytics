@@ -1,6 +1,6 @@
 # Data Dictionary
 
-> Auto-generated from the executed run (2026-11-01 17:30 UTC). Types and missingness are measured, not assumed.
+> Auto-generated from the executed run (2026-11-01 17:48 UTC). Types and missingness are measured, not assumed.
 
 ## Metric definitions
 | metric | definition | numerator | denominator | unit | source_fields |
@@ -210,6 +210,8 @@
 | off_role | object | 0.0 |  |
 | on_role | object | 0.0 |  |
 | like_for_like | bool | 0.0 |  |
+| player_on_display | object | 0.0 |  |
+| player_off_display | object | 0.0 |  |
 | sub_number | int64 | 0.0 |  |
 | window_number | int64 | 0.0 | 0 = interval change; rules user-configured |
 | max_subs_allowed | int32 | 0.0 |  |

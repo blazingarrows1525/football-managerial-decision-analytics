@@ -16,11 +16,24 @@ Workspace at start: empty folder, not a Git repository (no files to preserve).
 | G | Modelling | Gated logistic regression "who starts?" — gate passed (660 rows, 33 matches), chronological split |
 | H | Delivery | Tests, notebook execution (real + synthetic), reports, dataset card / dictionary generated from the run |
 
+## Iteration 2 — presentation visuals (requested: more graphs, heatmaps, dashboards)
+* Added `advanced_visuals.py` (pitch action heatmaps, rotation matrix, lineup similarity, squad percentile matrix,
+  minutes sunburst, match momentum, phase profile, dominance scatter, shot-quality distribution, team style
+  fingerprint, pass-direction rose, team × timing heatmap) and `dashboards.py` (season, player, match and
+  substitution dashboards), `tactical_analysis.expected_points`, and `reporting.write_dashboard_html`
+  (`outputs/dashboard.html`). Notebook now 75 cells / 57 figures.
+* Checked visually in a browser at 1300 px width. Fixes found that way: KPI indicators ignored signed d3
+  formats (`+.2f` printed full precision) → sign added as prefix; substitute names came from event full legal
+  names ("Reyna" for Hincapié) → lineup display names; clipped row labels / empty extra-time column on the
+  phase heatmap; title overlap on the squad matrix; stacked-bar legend over the axis.
+* 20 new tests (empty states for all new charts, heatmap shares sum to 100, rose direction, xPts probabilities,
+  dashboards on the synthetic league, single Plotly-JS load in the HTML page).
+
 ## Tests and executions (final state)
-* `python -m pytest -q` → **91 passed** (≈11 s, offline).
-* `python scripts/execute_notebook.py` (REAL_OPEN_DATA, fresh kernel) → 46 code cells, **0 errors**, ≈58 s with
+* `python -m pytest -q` → **111 passed** (≈19 s, offline).
+* `python scripts/execute_notebook.py` (REAL_OPEN_DATA, fresh kernel) → 51 code cells, **0 errors**, ≈64 s with
   cached data (first download of 70 files / 120 MB ≈ 45 s).
-* `python scripts/execute_notebook.py --mode DEMO_SYNTHETIC` → 46 code cells, **0 errors**, ≈20 s; synthetic banner
+* `python scripts/execute_notebook.py --mode DEMO_SYNTHETIC` → 51 code cells, **0 errors**, ≈21 s; synthetic banner
   present on every chart (73 occurrences in outputs).
 
 ## Failures encountered and fixes

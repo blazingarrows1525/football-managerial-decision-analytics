@@ -121,7 +121,7 @@ import football_analytics as fa
 from football_analytics import (config as fcfg, ingestion, parsing, validation, features, player_analysis as pa,
                                 tactical_analysis as ta, lineup_optimizer as lo, substitution_analysis as sa,
                                 manager_analysis as ma, modeling as mdl, visualizations as viz, reporting,
-                                data_sources, pipeline)
+                                data_sources, pipeline, advanced_visuals as av, dashboards as db)
 SEED = 42
 np.random.seed(SEED)
 print(f"Project root : {ROOT}")
@@ -387,8 +387,22 @@ display(ta.team_style_summary(B.team_stats).head(10))
 # =============================================================================
 md(r"""
 ## 8 · Exploratory data analysis
-Distributions first (what is typical, what is extreme), then position-group differences (RQ1), relationships
-(correlation is association only), and temporal team trends.
+Opens with the **season dashboard** (KPI cards, points race against shot-based expected points, match-by-match xG),
+then distributions (what is typical, what is extreme), position-group differences (RQ1), relationships (correlation
+is association only), team trends, match dominance and a single-match dashboard.
+
+*Expected points (xPts)* simulate each match 5,000 times, treating every shot as a Bernoulli trial with its
+StatsBomb xG — a summary of chance quality, not of what "should" have happened (shots are not independent in reality).
+""")
+code(r"""
+xpts = ta.expected_points(B.flags, B.team_stats, n_sims=5000, seed=SEED)
+season_fig = db.season_dashboard(B.team_stats, xpts, FOCUS, banner=BANNER)
+season_fig.show()
+fx = xpts[xpts.team_name == FOCUS]
+display(Markdown(f"**Observation (computed):** {FOCUS} collected **{fx.points.sum():.0f} points** against "
+                 f"**{fx.xpts.sum():.1f} expected points** from shot quality "
+                 f"({fx.points.sum() - fx.xpts.sum():+.1f}); the gap can reflect finishing, goalkeeping, game-state "
+                 "management and chance — it is not a measure of luck alone."))
 """)
 code(r"""
 eda_metrics = ["xg_p90", "key_passes_p90", "progressive_passes_p90", "progressive_carries_p90", "pressures_p90",
@@ -415,6 +429,13 @@ viz.results_overview(B.team_stats, FOCUS, banner=BANNER).show()
 viz.team_trend(B.team_stats, FOCUS, banner=BANNER).show()
 """)
 code(r"""
+focus_ids = list(B.team_stats[B.team_stats.team_name == FOCUS].match_id)
+av.dominance_scatter(B.team_stats, FOCUS, banner=BANNER).show()
+av.phase_profile(B.flags, T["goals"], B.team_stats, FOCUS, cfg.match_phases, banner=BANNER).show()
+av.xg_distribution(B.flags, FOCUS, focus_ids, banner=BANNER).show()
+av.team_style_radar(B.team_stats, FOCUS, banner=BANNER).show()
+""")
+code(r"""
 # Match timeline and cumulative xG for the focus team's highest-xG match
 fm = B.team_stats[B.team_stats.team_name == FOCUS].sort_values("xg", ascending=False).iloc[0]
 mrow = T["matches"].set_index("match_id").loc[fm.match_id]
@@ -423,6 +444,11 @@ viz.match_timeline(ta.match_timeline_events(T["events"], T["goals"], fm.match_id
                    banner=BANNER).show()
 viz.cumulative_xg_chart(ta.cumulative_xg(B.flags, fm.match_id), title=f"Cumulative xG — {MATCH_LABEL}",
                         banner=BANNER).show()
+""")
+code(r"""
+match_fig = db.match_dashboard(B.flags, T["goals"], T["matches"], fm.match_id, banner=BANNER)
+match_fig.show()
+av.match_momentum(B.flags, T["goals"], fm.match_id, title=f"Momentum — {MATCH_LABEL}", banner=BANNER).show()
 """)
 
 # =============================================================================
@@ -453,7 +479,7 @@ def player_view(player_id, team_id=None):
     prof = pa.player_profile(B.season_pct, player_id, team_id)
     display(pd.DataFrame([prof]))
     row = B.season_pct[B.season_pct.player_id == player_id].iloc[0]
-    viz.player_radar(B.season_pct, player_id, pa.radar_metrics(row.primary_role, cfg), banner=BANNER).show()
+    db.player_dashboard(B.season_pct, B.pms, B.flags, player_id, cfg, banner=BANNER).show()
     display(Markdown("**Observed relative strengths / weaknesses** (percentiles of role-fit metrics; not a rating)"))
     display(pa.strengths_weaknesses(B.season_pct, player_id, cfg, team_id))
     metrics = [m for m in pa.radar_metrics(row.primary_role, cfg) if m.endswith("_p90")][:3]
@@ -472,6 +498,28 @@ else:
     print("Live player selector available when running interactively (Colab/Jupyter).")
 """)
 code(r"""
+# Head-to-head radar with the next most-used team-mate in the same role, plus spatial / directional profile
+mates = fs[(fs.primary_role == P.primary_role) & (fs.player_id != P.player_id)].sort_values("minutes_played",
+                                                                                          ascending=False)
+viz.player_radar(B.season_pct, P.player_id, pa.radar_metrics(P.primary_role, cfg),
+                 compare_id=mates.player_id.iloc[0] if len(mates) else None, banner=BANNER).show()
+touch = B.flags[(B.flags.player_id == P.player_id) & B.flags.touches.astype(bool)]
+av.action_heatmap(touch, f"{P.player_name}: where he receives and uses the ball (season)", banner=BANNER).show()
+passes_p = B.flags[(B.flags.player_id == P.player_id) & (B.flags.type == "Pass")]
+av.pass_direction_rose(passes_p, f"{P.player_name}: pass directions and completion", banner=BANNER).show()
+""")
+md(r"""
+### Squad-level views
+The squad matrix shows every eligible outfield player's percentile on each metric (blue = high, red = low) — a
+one-glance scouting sheet. The sunburst shows how playing time is spread across role families, roles and players
+(click a segment to zoom).
+""")
+code(r"""
+squad_metrics = ["xg_p90", "xa_p90", "key_passes_p90", "progressive_passes_p90", "progressive_carries_p90",
+                 "dribbles_completed_p90", "box_touches_p90", "pressures_p90", "interceptions_p90", "tackles_won_p90",
+                 "ball_recoveries_p90", "aerials_won_p90", "pass_completion_pct"]
+av.squad_percentile_heatmap(B.season_pct, FOCUS, squad_metrics, max(cfg.min_minutes, 450), banner=BANNER).show()
+av.minutes_sunburst(B.season_pct, FOCUS, banner=BANNER).show()
 viz.workload_bars(B.season_pct, FOCUS, banner=BANNER).show()
 """)
 
@@ -504,6 +552,23 @@ nodes, edges, cut = ta.pass_network(B.flags, T["appearances"], fm.match_id, team
 viz.pass_network_chart(nodes, edges, f"{FOCUS} pass network — {MATCH_LABEL}", cut, banner=BANNER).show()
 prog = B.flags[(B.flags.player_id == P.player_id)]
 viz.progressive_actions_map(prog, f"{P.player_name}: progressive passes and carries (season)", banner=BANNER).show()
+""")
+md(r"""
+### Where the team presses and defends
+Zone heatmaps of the focus team's pressures and ball-winning actions (tackles, interceptions, recoveries, blocks,
+clearances) across the season, in the team's own attacking direction — pressing high shows up as heat in the
+opponent half. The third map shows where opponents managed to have the ball against the focus team.
+""")
+code(r"""
+team_ev = B.flags[B.flags.team_id == team_id_focus]
+av.action_heatmap(team_ev[team_ev.type == "Pressure"], f"{FOCUS}: pressures (season)", banner=BANNER).show()
+av.action_heatmap(team_ev[team_ev.defensive_actions.astype(bool)], f"{FOCUS}: ball-winning and defensive actions",
+                  banner=BANNER).show()
+opp_ev = B.flags[B.flags.match_id.isin(focus_ids) & (B.flags.team_id != team_id_focus)]
+av.action_heatmap(opp_ev[opp_ev.touches.astype(bool)], f"Opponents' on-ball actions against {FOCUS}",
+                  banner=BANNER).show()
+press_high = (team_ev[team_ev.type == "Pressure"].x >= 60).mean()
+display(Markdown(f"**Observation (computed):** {press_high:.0%} of {FOCUS}'s pressures happen in the opponent half."))
 """)
 
 # =============================================================================
@@ -621,6 +686,9 @@ viz.subs_by_state(S, banner=BANNER).show()
 display(sa.state_profile(S_grp, by="group"))
 """)
 code(r"""
+subs_fig = db.substitution_dashboard(S, FOCUS, cfg.sub_timing_bands, banner=BANNER)
+subs_fig.show()
+av.subs_team_band_heatmap(S, cfg.sub_timing_bands, banner=BANNER).show()
 viz.role_flow_sankey(sa.role_flow(S), banner=BANNER).show()
 viz.substitution_timeline(S[S.match_id == fm.match_id], f"Substitutions — {MATCH_LABEL}", banner=BANNER).show()
 """)
@@ -750,6 +818,9 @@ if FOCUS_MANAGER:
     viz.manager_formation_distribution(B.team_stats, FOCUS_MANAGER, banner=BANNER).show()
     cont = ma.lineup_continuity(T["appearances"], T["matches"])
     viz.rotation_trend(cont[cont.team_id == team_id_focus], FOCUS, banner=BANNER).show()
+    rotation_fig = av.rotation_matrix(T["appearances"], T["matches"], FOCUS, banner=BANNER)
+    rotation_fig.show()
+    av.lineup_similarity(T["appearances"], T["matches"], FOCUS, banner=BANNER).show()
     viz.manager_sub_profile(S, FOCUS_MANAGER, cfg.sub_timing_bands, banner=BANNER).show()
     resp = ma.response_after_conceding(B)
     r = resp[resp.manager == FOCUS_MANAGER]
@@ -889,10 +960,43 @@ export_figs = {
     "20_sub_timing": viz.sub_timing_histogram(S_grp, cfg.sub_timing_bands, group="group", banner=BANNER),
     "22_role_flow": viz.role_flow_sankey(sa.role_flow(S), banner=BANNER),
     "23_impact": viz.impact_chart(imp, "xg", banner=BANNER),
+    "31_season_dashboard": season_fig,
+    "32_player_dashboard": db.player_dashboard(B.season_pct, B.pms, B.flags, P.player_id, cfg, banner=BANNER),
+    "33_match_dashboard": match_fig,
+    "34_substitution_dashboard": subs_fig,
+    "35_rotation_matrix": rotation_fig,
+    "36_squad_percentiles": av.squad_percentile_heatmap(B.season_pct, FOCUS, squad_metrics,
+                                                        max(cfg.min_minutes, 450), banner=BANNER),
+    "37_pressure_heatmap": av.action_heatmap(team_ev[team_ev.type == "Pressure"], f"{FOCUS}: pressures",
+                                             banner=BANNER),
 }
 for name, fig in export_figs.items():
     res = viz.export_figure(fig, str(cfg.figures_dir / f"{name}.html"), str(cfg.figures_dir / f"{name}.png"))
-print(f"{len(export_figs)} interactive HTML charts written to outputs/figures/ (PNG: {res.get('png')})")
+print(f"{len(export_figs)} interactive HTML charts written to {cfg.figures_dir.relative_to(ROOT)} "
+      f"(PNG: {res.get('png')})")
+
+# One-page presentation dashboard (open in any browser; Plotly JS from CDN)
+dash_sections = [
+    ("Season overview", "KPIs, points vs shot-based expected points, xG for/against per match.", season_fig),
+    ("Player card", f"{P.player_name}: percentile profile, action heatmap and match-by-match output.",
+     export_figs["32_player_dashboard"]),
+    ("Squad profile", "Percentile of every eligible outfield player on each metric.", export_figs["36_squad_percentiles"]),
+    ("Who played when", "Minutes per player per match: rotation across the season.", rotation_fig),
+    ("Recommended starting XI", f"Pre-match recommendation for {xm.match_date:%d %b %Y} vs {xm.opponent} "
+     f"(decision support only).", export_figs["13_xi_pitch"]),
+    ("Match dashboard", MATCH_LABEL, match_fig),
+    ("Pressing map", "Where the team applies pressure.", export_figs["37_pressure_heatmap"]),
+    ("Substitution patterns", "Timing, game state and most-used substitutes.", subs_fig),
+    ("Substitution windows", "Observed association only — not a causal effect.", export_figs["23_impact"]),
+]
+dash_path = ROOT / "outputs" / ("dashboard_synthetic.html" if cfg.is_synthetic else "dashboard.html")
+reporting.write_dashboard_html(dash_sections, dash_path,
+                               title=f"{FOCUS} — Football Decision Intelligence Dashboard",
+                               subtitle=f"{T['matches'].competition_name.iloc[0]} {T['matches'].season_name.iloc[0]} · "
+                                        f"{len(T['matches'])} matches · {len(T['events']):,} events · StatsBomb "
+                                        "open data" if not cfg.is_synthetic else "Synthetic demo league",
+                               banner=BANNER)
+print("presentation dashboard:", dash_path.relative_to(ROOT))
 if IN_COLAB:
     import shutil
     from google.colab import files as _f

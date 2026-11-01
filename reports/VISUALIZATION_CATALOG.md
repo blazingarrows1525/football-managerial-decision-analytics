@@ -1,7 +1,7 @@
 # Visualization Catalogue
 
 All charts are Plotly figures from `src/football_analytics/visualizations.py`, rendered in the executed notebook
-(38 figures in the default run). Every function checks its required columns and returns a readable "no data"
+(57 figures in the default run). Every function checks its required columns and returns a readable "no data"
 figure instead of failing (tested in `tests/test_visualization_empty_states.py`). In `DEMO_SYNTHETIC` mode every
 chart carries a red "Illustrative synthetic data" banner. Status ✅ = implemented and executed on the real
 StatsBomb run.
@@ -45,6 +45,29 @@ ipywidgets control (live Colab/Jupyter) · **Z** zoom/pan/legend toggling (all c
 | 29 | Coverage heatmap (`missingness_heatmap`) | 5 | Data quality | field completeness by event type | H | % present; blanks often structural | — | ✅ |
 | 30 | Model evaluation (`confusion_matrix_chart`, `roc_chart`, `calibration_chart`) | 14 | RQ6 | chronological hold-out predictions | H | Top-11 rule confusion matrix, ROC, calibration bins | Small test set (200 rows) | ✅ |
 | 31 | Minutes-threshold sensitivity (`threshold_sensitivity_chart`) | 7 | RQ2 | minutes | H | Eligible players vs threshold | — | ✅ |
+
+### Dashboards and advanced visuals (`dashboards.py`, `advanced_visuals.py`)
+| # | Chart (function) | Notebook § | Research question | Source columns | Interaction | How to read it | Limitations | Status |
+|---|---|---|---|---|---|---|---|---|
+| D1 | **Season dashboard** (`season_dashboard`) | 8 | Team performance | team-match stats, xPts | H | KPI cards; cumulative points vs expected points vs 2-ppm pace; xG for (up) / against (down) with goal-difference diamonds | xPts assumes independent shots | ✅ |
+| D2 | **Player dashboard** (`player_dashboard`) | 9 | RQ1/RQ2 | season percentiles, player-match stats, located touches | H, W (player) | KPI cards, percentile radar, on-ball heatmap, per-match minutes + xG+xA (stars = scored) | Benchmark group stated in title | ✅ |
+| D3 | **Match dashboard** (`match_dashboard`) | 8 | Match flow | events of one match | H | Momentum (5-min xG), cumulative xG, both teams' shot maps | Single match | ✅ |
+| D4 | **Substitution dashboard** (`substitution_dashboard`) | 12 | RQ4/RQ5 | enriched substitutions | H | KPI cards, timing band × state, most-used substitutes, every change on minute × score grid | Focus team only | ✅ |
+| 32 | Pitch action heatmap (`action_heatmap`) — touches, pressures, defensive actions, opponents' touches | 9, 10 | Player/team tactics | located events | H | Share of actions per 10×10 zone; lines drawn above the heat | Zones are fixed bins | ✅ |
+| 33 | Squad rotation matrix (`rotation_matrix`) | 13 | RQ6 | appearances | H | Player × match minutes; ● started, ▲ came on, · unused, blank = not in squad | Dataset matches only | ✅ |
+| 34 | Starting-XI similarity (`lineup_similarity`) | 13 | RQ6/RQ7 | starters per match | H | Jaccard of XIs between every pair of matches; dark blocks = stable periods | — | ✅ |
+| 35 | Squad percentile matrix (`squad_percentile_heatmap`) | 9 | RQ1/RQ2 | `*_pct` | H | Player × metric percentile, diverging around the 50th | Min 450 minutes | ✅ |
+| 36 | Minutes sunburst (`minutes_sunburst`) | 9 | RQ6 | minutes by role | H, click-to-zoom | Role family → role → player area = minutes | Role = primary role | ✅ |
+| 37 | Match momentum (`match_momentum`) | 8 | Match flow | xG and final-third actions per 5 min | H | Diverging xG bars, amber line = final-third share | Buckets of elapsed time | ✅ |
+| 38 | Phase profile (`phase_profile`) | 8 | RQ4 context | goals, xG by match phase | H | Diverging heatmap: blue = for, red = against | Season totals | ✅ |
+| 39 | Match dominance (`dominance_scatter`) | 8 | Team performance | xG for/against per match | H | Points below the diagonal = out-created opponent; size = goal margin | — | ✅ |
+| 40 | Shot-quality distribution (`xg_distribution`) | 8 | Team performance | shot xG | H | Overlaid histograms for/against with conversion notes | xG is a model output | ✅ |
+| 41 | Team style fingerprint (`team_style_radar`) | 8 | RQ3 | team-match averages | H | Percentile among the dataset's teams; PPDA and xG against inverted | Opponents measured only vs focus team | ✅ |
+| 42 | Pass-direction rose (`pass_direction_rose`) | 9 | Player profile | pass start/end | H | 16 sectors, forward = up; colour = completion % | Direction from coordinates | ✅ |
+| 43 | Substitution timing by team (`subs_team_band_heatmap`) | 12 | RQ4 | timing band per team | H | Share of each team's subs per band, sorted by median minute | 1-2 matches per opponent | ✅ |
+| 44 | **One-page presentation dashboard** (`reporting.write_dashboard_html`) | 16 | Presentation / demo | 9 key figures | H, D, section links | `outputs/dashboard.html` — opens in any browser | Needs internet for Plotly JS (CDN) | ✅ |
+
+Total figures in the executed default notebook: **57**.
 
 Removed / not implemented by design: xT, packing, PPDA-on-tracking and running-distance charts — the event data do
 not contain the observations they require. 360 freeze-frame charts are possible (`include_360=True`) but are not

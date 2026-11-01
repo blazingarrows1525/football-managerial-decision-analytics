@@ -93,3 +93,31 @@ def cumulative_xg(flags: pd.DataFrame, match_id: Any) -> pd.DataFrame:
     s = s.sort_values("elapsed_min")
     s["cum_xg"] = s.groupby("team_name")["shot_xg"].cumsum()
     return s
+
+
+def expected_points(flags: pd.DataFrame, team_stats: pd.DataFrame, n_sims: int = 5000, seed: int = 0
+                    ) -> pd.DataFrame:
+    """Expected points per team-match by simulating every shot as a Bernoulli(xG) trial.
+
+    A shot-based xPts model (periods 1-4; own goals not simulated). It summarises
+    chance quality, not what "should" have happened, and assumes shots are independent.
+    """
+    rng = np.random.default_rng(seed)
+    shots = flags[(flags["type"] == "Shot") & flags["period"].between(1, 4)]
+    rows = []
+    for mid, g in team_stats.groupby("match_id"):
+        if len(g) != 2:
+            continue
+        t0, t1 = g.iloc[0], g.iloc[1]
+        sim = {}
+        for t in (t0, t1):
+            xg = shots.loc[(shots["match_id"] == mid) & (shots["team_id"] == t["team_id"]), "shot_xg"].fillna(0)
+            xg = xg.to_numpy(dtype=float)
+            sim[t["team_id"]] = (rng.random((n_sims, len(xg))) < xg).sum(axis=1) if len(xg) else np.zeros(n_sims)
+        for t, o in ((t0, t1), (t1, t0)):
+            a, b = sim[t["team_id"]], sim[o["team_id"]]
+            pw, pd_ = float((a > b).mean()), float((a == b).mean())
+            rows.append({"match_id": mid, "team_id": t["team_id"], "team_name": t["team_name"],
+                         "match_date": t["match_date"], "p_win": pw, "p_draw": pd_, "p_loss": 1 - pw - pd_,
+                         "xpts": 3 * pw + pd_, "points": t["points"]})
+    return pd.DataFrame(rows).sort_values(["match_date", "match_id"]).reset_index(drop=True)

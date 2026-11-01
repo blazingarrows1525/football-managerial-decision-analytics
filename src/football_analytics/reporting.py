@@ -237,3 +237,42 @@ def write_data_dictionary(bundle: Any, path: Path) -> Path:
     parts.append("## Source register\n" + _df_md(source_register()) + "\n")
     path.write_text("\n".join(parts), encoding="utf-8")
     return path
+
+
+def write_dashboard_html(sections: list[tuple[str, str, Any]], path: Path, title: str, subtitle: str = "",
+                         banner: str | None = None) -> Path:
+    """One self-contained HTML page with several interactive figures (Plotly JS loaded once from CDN)."""
+    blocks = []
+    for i, (head, desc, fig) in enumerate(sections):
+        html = fig.to_html(full_html=False, include_plotlyjs="cdn" if i == 0 else False,
+                           config={"displaylogo": False, "responsive": True})
+        blocks.append(f'<section><h2>{head}</h2><p class="desc">{desc}</p><div class="fig">{html}</div></section>')
+    warn = f'<div class="warn">{banner}</div>' if banner else ""
+    nav = "".join(f'<a href="#s{i}">{h}</a>' for i, (h, _, _) in enumerate(sections))
+    blocks = [b.replace("<section>", f'<section id="s{i}">', 1) for i, b in enumerate(blocks)]
+    page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}</title>
+<style>
+:root {{ --ink:#1f2933; --muted:#6b7280; --paper:#fbfaf7; --line:#e7e4dc; --navy:#1d3557; --teal:#2a9d8f; }}
+body {{ margin:0; background:var(--paper); color:var(--ink); font-family:Inter,"Segoe UI",Helvetica,Arial,sans-serif; }}
+header {{ padding:28px 32px 18px; border-bottom:1px solid var(--line); background:white; }}
+header h1 {{ margin:0 0 6px; font-size:26px; color:var(--navy); }}
+header p {{ margin:0; color:var(--muted); }}
+nav {{ position:sticky; top:0; z-index:5; background:var(--paper); border-bottom:1px solid var(--line);
+       padding:10px 32px; display:flex; gap:16px; flex-wrap:wrap; font-size:13px; }}
+nav a {{ color:var(--navy); text-decoration:none; }} nav a:hover {{ text-decoration:underline; }}
+main {{ max-width:1280px; margin:0 auto; padding:16px; }}
+section {{ background:white; border:1px solid var(--line); border-radius:10px; margin:18px 0; padding:16px 20px; }}
+section h2 {{ margin:4px 0; font-size:18px; color:var(--navy); }}
+.desc {{ color:var(--muted); margin:4px 0 8px; font-size:14px; }}
+.warn {{ background:#c8553d; color:white; padding:10px 32px; font-weight:600; }}
+footer {{ color:var(--muted); font-size:12px; padding:20px 32px 40px; }}
+</style></head><body>
+<header><h1>{title}</h1><p>{subtitle}</p></header>{warn}<nav>{nav}</nav>
+<main>{''.join(blocks)}</main>
+<footer>{STATSBOMB_ATTRIBUTION} Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC from the executed
+notebook. Associations are not causal effects; recommendations are decision support only.</footer>
+</body></html>"""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(page, encoding="utf-8")
+    return path
