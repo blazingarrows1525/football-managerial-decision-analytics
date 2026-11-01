@@ -1,31 +1,5 @@
-# Raw and processed data (re-downloadable / regenerable; check licence before committing)
-data/raw/**
-data/processed/**
-data/external/**
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/external/.gitkeep
-!data/README.md
-
-# Generated outputs
-outputs/figures/*
-outputs/exports/*
-!outputs/.gitkeep
-dist/
-
-# Secrets — never commit keys (API-Football etc. are read from env / Colab Secrets)
-.env
-*.key
-secrets*
-
-# Python / Jupyter
+# Raw data cache (downloaded by the notebook) and local tooling
+data/
 __pycache__/
-*.pyc
 .ipynb_checkpoints/
-.pytest_cache/
-.venv/
-venv/
-
-# Local editor/preview config
 .claude/
-outputs/dashboard_synthetic.html
