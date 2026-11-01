@@ -1,0 +1,19 @@
+# Core (versions tested locally: see BUILD_LOG.md)
+pandas>=2.0,<3
+numpy>=1.24,<3
+scipy>=1.10
+scikit-learn>=1.3
+plotly>=5.18
+pyarrow>=14
+requests>=2.31
+ipywidgets>=8.0
+jinja2>=3.1          # pandas Styler tables in the notebook
+
+# Notebook execution and tests
+nbformat>=5.9
+nbclient>=0.9
+ipykernel>=6.25
+pytest>=7.4
+
+# Optional: static PNG export of Plotly charts (HTML export works without it)
+# kaleido>=0.2.1
