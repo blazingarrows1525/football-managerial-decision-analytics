@@ -1,0 +1,15 @@
+# Versions verified in NOTEBOOK_EXECUTION_REPORT.md (Python 3.10). Google Colab already provides all of these.
+pandas>=2.0
+numpy>=1.24
+scipy>=1.11          # stats.false_discovery_control
+scikit-learn>=1.3
+plotly>=5.18
+matplotlib>=3.7
+seaborn>=0.13
+networkx>=3.0
+requests>=2.31
+ipywidgets>=8.0      # optional live controls; static fallbacks exist
+jinja2>=3.1          # pandas Styler tables
+shap>=0.44           # optional: SHAP figure is skipped with a note if missing
+nbconvert>=7.0       # for headless execution
+ipykernel>=6.25

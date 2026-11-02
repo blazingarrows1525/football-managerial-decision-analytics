@@ -1,0 +1,59 @@
+# Notebook Execution Report
+
+## Environment
+| Item | Version |
+|---|---|
+| OS | Windows 11 |
+| Python | 3.10.11 (kernel `python3`) |
+| Libraries | pandas 2.1.4 · numpy 1.26.2 · scipy 1.15.3 · scikit-learn 1.3.2 · plotly 6.6.0 · matplotlib 3.10.8 · seaborn 0.13.2 · networkx 3.4.2 · shap 0.49.1 · ipywidgets 8.1.8 · nbconvert 7.17.1 · nbclient 0.11.0 |
+| Not installed / not used | mplsoccer, squarify, statsmodels, kaleido (pitches are drawn with Matplotlib/Plotly; treemaps with Plotly; PNG export of Plotly is not needed because static figures are Matplotlib) |
+| Data | StatsBomb Open Data, 70 cached JSON files (115 MB on disk) in `data/raw/statsbomb/` (git-ignored; downloaded on first run) |
+
+## Repository inspection (before changes)
+- Tracked files: `.gitignore`, `Football_Managerial_Decision_Analytics.ipynb`; untracked data cache only.
+- Original notebook: 51 cells (34 code), all pipeline code inline, no external modules, loads data from GitHub raw URLs with caching.
+- An earlier interactive editor run (Python 3.13) had lost outputs in cells that combined charts with `ipywidgets.interact()` (fixed on this branch by isolating widget cells).
+
+## 1. Original notebook — fresh-kernel execution
+```bash
+python -m nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1200 Football_Managerial_Decision_Analytics.ipynb --output executed_original.ipynb
+```
+Result: **34 code cells, 0 errors, 95 Plotly figures, ≈94 s.** No stderr warnings — but the notebook globally suppressed
+`FutureWarning`, which hides real issues; this was removed in the enhanced notebook.
+
+## 2. Enhanced notebook — final fresh-kernel execution
+```bash
+FMA_HEADLESS=1 python -m nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=1800 football_managerial_analytics_enhanced.ipynb
+```
+| Check | Result |
+|---|---|
+| Cells | 74 (27 markdown, 47 code) |
+| Errors | **0** |
+| Warnings in outputs | **0** (no global warning filter) |
+| Figures | 95 interactive Plotly + 27 static Matplotlib/Seaborn |
+| Gallery | 27 PNG + 6 interactive HTML in `visualization_gallery/` |
+| Runtime | ≈146 s with cached data |
+
+`FMA_HEADLESS=1` replaces the four live ipywidgets controls with a note; every view they drive also has a static
+default above it. The original notebook (same widget cells) was additionally executed with live widgets enabled
+(headless flag unset): 0 errors and all 95 figures. The enhanced notebook was not re-run in that mode.
+
+## 3. Problems found and fixed during enhancement
+| Problem | Cause | Fix |
+|---|---|---|
+| `TypeError: unhashable type: 'list'` in the missingness matrix | `seaborn.color_palette([...], as_cmap=True)` returns a list for custom colours | `matplotlib.colors.ListedColormap` |
+| `SyntaxError` risk in an f-string | backslash inside an f-string expression (invalid before Python 3.12) | value precomputed |
+| SHAP `FutureWarning` (global NumPy RNG seeded) | `np.random.seed` in the setup cell | removed — every random step already uses explicit seeds (`default_rng`, `random_state`) |
+| Global `warnings.filterwarnings("ignore", FutureWarning)` | blanket suppression | removed |
+| Interpretations not supported by data | text written before results (e.g. "strong" role differences at ε² = 0.01; "most stable metrics" computed on z-scores; venue effect described as "no evidence" at δ = 0.34) | every interpretation is now generated from the computed statistics |
+| Layout: overlapping tick labels (B3), pitch lines hidden under hexbin (C3), colliding network labels (D1b) | figure styling | label thinning, z-order, size-aware offsets |
+
+## 4. Verification of figures
+Every static figure was opened and inspected after the final run (titles, labels, legends, clipping, overlaps).
+Interactive figures from the original notebook were previously checked in a browser.
+
+## 5. Unresolved / not verified
+- Not executed inside Google Colab in this session (Colab uses Python 3.11/3.12 and pandas 2.2; pandas 2.2 may emit `FutureWarning`s about `fillna` downcasting that pandas 2.1.4 does not — they would be shown, not hidden).
+- Live widget interaction was not clicked through in VS Code/Jupyter after the widget-isolation fix.
+- SHAP is optional: if missing, the notebook prints a note and keeps permutation importance and partial dependence.
+- Statistical power is limited by the data (34 matches, one team); see the limitations in `ANALYSIS_REPORT.md`.
