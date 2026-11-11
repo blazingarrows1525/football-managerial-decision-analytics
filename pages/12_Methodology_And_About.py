@@ -118,7 +118,7 @@ elif view == "Reproduce":
         "`data/raw/` and caches the parsed tables as Parquet under `data/processed/`. Both folders are "
         "git-ignored: the licence does not allow redistribution.\n\n"
         "#### Where to read more\n"
-        "- `notebooks/` — seven research chapters and one main notebook, built on the same `src/` package\n"
+        "- `notebooks/` — seven research chapters and one complete combined notebook, built on the same `src/` package\n"
         "- `football_managerial_analytics_enhanced.ipynb` — the preserved, self-contained notebook from the "
         "previous version\n"
         "- `docs/` — architecture, methodology, data dictionary, provenance, visualization catalogue, deployment, "

@@ -44,7 +44,7 @@ pytest
 |---|---|
 | `app.py`, `pages/` | Streamlit entry point and 13 pages |
 | `src/` | shared package: `data`, `features`, `analytics`, `visualization`, `dashboard`, `reporting` |
-| `notebooks/` | seven research chapters (`00`–`06`) and `Football_Managerial_Research_Main.ipynb`, executed with outputs |
+| `notebooks/` | seven research chapters (`00`–`06`) and **`Football_Managerial_Analytics_Complete.ipynb` — everything in one notebook**, executed with outputs |
 | `tests/` | data, feature, statistics, chart-registry, renderer, decision-support, dashboard and hygiene tests |
 | `scripts/` | `build_notebooks.py`, `run_notebooks.py`, `build_reports.py`, `export_gallery.py` |
 | `docs/` | architecture, methodology, data dictionary, provenance, visualization catalogue, deployment, review evidence, viva questions, baseline and progress ledger |
@@ -81,6 +81,11 @@ public URL yet** — that step needs the repository owner's Streamlit account.
 
 ## The notebooks
 
+**One notebook for everything:** `notebooks/Football_Managerial_Analytics_Complete.ipynb`. Open it in Jupyter
+inside the repository and choose *Run All*, or open it in Google Colab, where its first cell fetches the project
+code and installs the requirements itself:
+https://colab.research.google.com/github/blazingarrows1525/football-managerial-decision-analytics/blob/main/notebooks/Football_Managerial_Analytics_Complete.ipynb
+
 | Notebook | Content |
 |---|---|
 | `00_Project_Research_And_Methodology` | question, objectives, hypotheses, scope, methodology, chart catalogue and explorer |
@@ -90,7 +95,7 @@ public URL yet** — that step needs the repository owner's Streamlit account.
 | `04_Starting_XI_And_Substitutions` | constraint-aware shortlist, sensitivity, backtests, substitution patterns and scenarios |
 | `05_Statistics_And_Models` | correlations with FDR control, group tests, power, PCA, clustering, the gated selection model |
 | `06_Managerial_Insights_And_Report` | managerial patterns, evidence cards, answers to the hypotheses, conclusions |
-| `Football_Managerial_Research_Main` | the core cells of all chapters in one runnable notebook |
+| **`Football_Managerial_Analytics_Complete`** | **all seven chapters with every section in one notebook, plus an optional full chart atlas; runs inside the repository or on its own in Colab (it fetches the code itself)** |
 
 Each chapter follows *research question → data and method → chart → interpretation → managerial implication
 and limitation*; interpretations are generated from the computed values. The notebooks are produced by

@@ -18,7 +18,7 @@
 | Deliverable | Evidence |
 |---|---|
 | Shared analytics package | `src/` — data, features, analytics, visualization, dashboard, reporting |
-| Research notebooks | `notebooks/00`–`06` and `Football_Managerial_Research_Main.ipynb`, executed with outputs |
+| Research notebooks | `notebooks/00`–`06` and the single combined `Football_Managerial_Analytics_Complete.ipynb`, executed with outputs |
 | Streamlit dashboard | `app.py` + 13 pages; `streamlit run app.py` |
 | Chart registry | 278 entries with status; `docs/VISUALIZATION_CATALOGUE.md` |
 | Tests | `tests/` — data, features, statistics, registry, every renderer, decision support, every dashboard page |

@@ -3,8 +3,8 @@
     python scripts/build_notebooks.py
 
 Writes ``notebooks/00 … 06`` (one chapter each, advanced sections on) and
-``notebooks/Football_Managerial_Research_Main.ipynb`` (every chapter's core cells in one runnable notebook,
-advanced sections off). Notebooks are thin: each code cell calls the shared ``src`` package, which is the
+``notebooks/Football_Managerial_Analytics_Complete.ipynb`` (every cell of every chapter, advanced sections on,
+plus an optional full chart atlas, in one runnable notebook). Notebooks are thin: each code cell calls the shared ``src`` package, which is the
 same code the Streamlit dashboard uses. Execute them with ``python scripts/run_notebooks.py``.
 """
 from __future__ import annotations
@@ -17,13 +17,20 @@ import nbformat as nbf
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "notebooks"
 
-SETUP = '''# Setup — locate the repository, import the shared package, load the workspace
-import os, sys, time
+SETUP = '''# Setup — locate (or fetch) the project code, import the shared package, load the workspace
+import os, subprocess, sys, time
 from pathlib import Path
 
-ROOT = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / "src" / "workspace.py").exists())
+REPO_URL = "https://github.com/blazingarrows1525/football-managerial-decision-analytics"
+ROOT = next((p for p in [Path.cwd(), *Path.cwd().parents] if (p / "src" / "workspace.py").exists()), None)
+if ROOT is None:  # opened on its own (e.g. Google Colab): fetch the project code once, next to this notebook
+    ROOT = Path.cwd() / "football-managerial-decision-analytics"
+    if not (ROOT / "src" / "workspace.py").exists():
+        subprocess.run(["git", "clone", "--depth", "1", REPO_URL, str(ROOT)], check=True)
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-r", str(ROOT / "requirements.txt")], check=True)
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+os.environ.setdefault("FMA_PROJECT_ROOT", str(ROOT))  # data cache and outputs live inside the project folder
 
 import numpy as np
 import pandas as pd
@@ -970,6 +977,38 @@ display(timings().sort_values("seconds", ascending=False).head(10))
 ])
 
 CHAPTERS = [CH0, CH1, CH2, CH3, CH4, CH5, CH6]
+COMPLETE_NAME = "Football_Managerial_Analytics_Complete.ipynb"
+
+ATLAS_MD = """---
+# Part 07 · Full chart atlas (optional)
+
+Every chart of the catalogue that the loaded data support, grouped by family, each with its ID, question,
+method note and caveat. Charts that cannot be drawn are listed with the reason instead.
+
+This renders roughly 270 figures, so it is **off by default**: set `RUN_FULL_ATLAS = True` below to run it
+(several minutes; the notebook grows by tens of megabytes). To look at single charts instead, use
+`show("<chart_id>", ws)` or the chart explorer in Part 00, or the Streamlit dashboard."""
+
+ATLAS_CODE = '''RUN_FULL_ATLAS = False   # set to True to render every available chart
+
+from src.visualization import registry
+
+table = catalogue(ws)
+display(table.groupby(["category", "status"]).size().unstack(fill_value=0))
+if RUN_FULL_ATLAS:
+    with timed("full chart atlas"):
+        for family, group in table.groupby("category", sort=False):
+            display(Markdown(f"## {family}"))
+            for row in group.itertuples():
+                if row.status == "implemented_and_available":
+                    display(Markdown(f"### {row.chart_id} · {row.name}"))
+                    display(Markdown(row.research_question))
+                    show(row.chart_id, ws)
+                else:
+                    display(Markdown(f"> **{row.chart_id} · {row.name}** — {row.status.replace('_', ' ')}: {row.reason}"))
+else:
+    print("Atlas skipped. Set RUN_FULL_ATLAS = True to render every available chart.")
+display(timings().sort_values("seconds", ascending=False).head(15))'''
 
 
 def _cells(items, setup_advanced: bool, core_only: bool, with_setup: bool = True):
@@ -1012,20 +1051,29 @@ def build() -> list[Path]:
         nbf.write(nb, path)
         written.append(path)
     head = nbf.v4.new_markdown_cell(
-        "# Football Managerial Decision Analytics — Main research notebook\n"
+        "# Football Managerial Decision Analytics — Complete notebook\n"
         "## From event data to evidence for managerial decisions\n\n" + ATTRIBUTION + "\n\n"
-        "This is the single runnable notebook: the core cells of all seven chapters in order. The chapter "
-        "notebooks `00`–`06` in this folder contain the same cells plus the optional advanced sections. All logic "
-        "lives in the shared `src/` package, which the Streamlit dashboard also uses.\n\n"
+        "**Everything in one notebook:** all seven chapters in order, including the advanced sections, and an "
+        "optional full chart atlas at the end. Run it top to bottom (*Run All*).\n\n"
+        "- **Inside the repository** it uses the local `src/` package directly.\n"
+        "- **Opened on its own (e.g. Google Colab)** the first cell downloads the project code from GitHub and "
+        "installs the requirements; the StatsBomb data (about 120 MB) is then downloaded on first use.\n"
+        "- Expect about 8–10 minutes for a first run (download and parsing included) and less afterwards.\n"
+        "- The chapter notebooks `00`–`06` in `notebooks/` contain the same cells, one chapter each.\n\n"
         "| Part | Content |\n|---|---|\n"
-        + "\n".join(f"| {i:02d} | {t} |" for i, (_, t, _) in enumerate(CHAPTERS)))
+        + "\n".join(f"| {i:02d} | {t} |" for i, (_, t, _) in enumerate(CHAPTERS))
+        + "\n| 07 | Full chart atlas (optional — every available chart of the catalogue) |")
     cells = [head]
     for i, (name, title, items) in enumerate(CHAPTERS):
         cells.append(nbf.v4.new_markdown_cell(f"---\n# Part {i:02d} · {title}"))
-        cells += _cells(items, setup_advanced=False, core_only=True, with_setup=(i == 0))
-    path = OUT / "Football_Managerial_Research_Main.ipynb"
+        cells += _cells(items, setup_advanced=True, core_only=False, with_setup=(i == 0))
+    cells += [nbf.v4.new_markdown_cell(ATLAS_MD), nbf.v4.new_code_cell(ATLAS_CODE)]
+    path = OUT / COMPLETE_NAME
     nbf.write(_notebook(cells), path)
     written.append(path)
+    old = OUT / "Football_Managerial_Research_Main.ipynb"
+    if old.exists():
+        old.unlink()  # superseded by the complete notebook
     return written
 
 

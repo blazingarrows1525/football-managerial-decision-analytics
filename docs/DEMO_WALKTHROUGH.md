@@ -8,7 +8,7 @@ streamlit run app.py
 ```
 
 Open the app once beforehand so the data are downloaded and cached (the first load takes a minute or two).
-Keep `notebooks/Football_Managerial_Research_Main.ipynb` open in a second tab. For a clean look switch on
+Keep `notebooks/Football_Managerial_Analytics_Complete.ipynb` open in a second tab. For a clean look switch on
 **Presentation mode** (top right of every page): it hides the sidebar and technical panels and enlarges labels.
 
 ## Ten-minute demo script

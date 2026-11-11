@@ -96,7 +96,7 @@ on the synthetic fixture, the notebook smoke run and the offline report build.
 
 ## Phase 7 — Notebooks and documents
 
-- `scripts/build_notebooks.py` generates seven chapters and the main notebook; `scripts/run_notebooks.py`
+- `scripts/build_notebooks.py` generates seven chapters and the complete combined notebook (all chapters, advanced sections on, optional chart atlas; 92 cells, 0 errors, 367 s); `scripts/run_notebooks.py`
   executes them in fresh kernels. Results: `NOTEBOOK_EXECUTION_REPORT.md` (V3 section) and
   `artifacts/reports/notebook_execution.json`.
 - `scripts/build_reports.py` (final run): 273 available, 0 unavailable, 5 not implemented, 0 failed
