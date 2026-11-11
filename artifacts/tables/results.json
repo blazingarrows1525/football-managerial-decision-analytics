@@ -1,0 +1,89 @@
+{
+ "generated_utc": "2026-11-11 11:29 UTC",
+ "focus_team": "Bayer Leverkusen",
+ "synthetic": false,
+ "matches": 34,
+ "events": 137765,
+ "players_in_squads": 460,
+ "teams": 18,
+ "raw_files": 70,
+ "raw_mb": 120.05,
+ "quality_checks": "16/16",
+ "wins": 28,
+ "draws": 6,
+ "losses": 0,
+ "points": 90.0,
+ "xpts": 74.8,
+ "goals_for": 89,
+ "goals_against": 24,
+ "xg_for": 72.7,
+ "xg_against": 27.8,
+ "top3_chance_share": 0.401,
+ "hub_pagerank": "Granit Xhaka",
+ "hub_betweenness": "Granit Xhaka",
+ "corr_significant_after_fdr": 0,
+ "corr_top": {
+  "variable": "xg_against",
+  "rho": -0.428,
+  "ci": [
+   -0.722,
+   -0.054
+  ],
+  "q": 0.093,
+  "n": 34
+ },
+ "venue": {
+  "delta": 0.336,
+  "p": 0.098,
+  "mean_diff": 0.56
+ },
+ "xt": {
+  "grid": "16x12",
+  "moves": 71583,
+  "shots": 916,
+  "iterations": 79,
+  "converged": true,
+  "max_value": 0.293
+ },
+ "pca": {
+  "pc1": 0.346,
+  "pc2": 0.168,
+  "components_for_80pct": 6,
+  "players": 70
+ },
+ "clustering": {
+  "k_best": 2,
+  "silhouette": 0.318,
+  "k_bic": 9,
+  "dbscan_noise": 3,
+  "dbscan_clusters": 1
+ },
+ "model_fitted": true,
+ "cv_f1": {
+  "Baseline: started previous match": 0.775,
+  "Gradient boosting": 0.782,
+  "Logistic regression": 0.811,
+  "Random forest": 0.789
+ },
+ "cv_auc": {
+  "Gradient boosting": 0.816,
+  "Logistic regression": 0.838,
+  "Random forest": 0.829
+ },
+ "best_model": "Logistic regression",
+ "holdout_auc": 0.775,
+ "holdout_brier": 0.197,
+ "model_rows": 660,
+ "model_matches": 33,
+ "xi_agreement_mean_pct": 77.7,
+ "xi_agreement_matches": 33,
+ "sub_top3_share": 0.825,
+ "sub_backtest_n": 137,
+ "sub_random_top3": 0.428,
+ "chart_status": {
+  "implemented_and_available": 273,
+  "implemented_but_unavailable": 0,
+  "not_implemented": 5,
+  "failed_validation": 0
+ }
+}

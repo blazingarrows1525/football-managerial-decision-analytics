@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    env:
+      # The suite runs on a generated synthetic fixture league: no network and no real data are needed.
+      FMA_DATA_MODE: DEMO_SYNTHETIC
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Import check
+        run: python -c "import src.pipeline, src.workspace, src.visualization.registry as r; print(len(r.load()), 'chart specs')"
+      - name: Lint (syntax errors, undefined names, unused imports)
+        run: ruff check src pages app.py scripts tests
+      - name: Unit, chart, registry and Streamlit AppTest suites
+        run: pytest
+      - name: Notebook smoke test (chapter 00 on the synthetic fixture)
+        run: |
+          python scripts/build_notebooks.py
+          FMA_PROJECT_ROOT="$RUNNER_TEMP/fma" python scripts/run_notebooks.py --only 00_ --interactive
+      - name: Report build smoke test (synthetic fixture, offline)
+        run: FMA_PROJECT_ROOT="$RUNNER_TEMP/fma" python scripts/build_reports.py --offline

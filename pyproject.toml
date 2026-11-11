@@ -1,0 +1,32 @@
+[project]
+name = "football-managerial-decision-analytics"
+version = "3.0.0"
+description = "Evidence-first football decision analytics: shared analytics core, research notebooks and a Streamlit dashboard on StatsBomb Open Data."
+requires-python = ">=3.10"
+readme = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q -ra --strict-markers"
+filterwarnings = [
+    "error::FutureWarning:src",
+    "ignore::DeprecationWarning",
+]
+markers = [
+    "real_data: needs the downloaded StatsBomb cache (skipped when absent)",
+    "slow: slower end-to-end checks",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["*.ipynb", "data", "artifacts", "visualization_gallery"]
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82", "F401", "F811", "F841"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]
+"pages/*.py" = ["E402"]

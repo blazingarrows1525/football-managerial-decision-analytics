@@ -1,0 +1,1168 @@
+{
+ "manifest_version": "1.0.0",
+ "generated_utc": "2026-11-11T11:27:58+00:00",
+ "data_mode": "REAL_OPEN_DATA",
+ "synthetic": false,
+ "source": {
+  "name": "StatsBomb Open Data",
+  "publisher": "StatsBomb / Hudl",
+  "repository": "https://github.com/hudl/open-data",
+  "base_url": "https://raw.githubusercontent.com/hudl/open-data/master/data",
+  "terms_url": "https://github.com/hudl/open-data/blob/master/LICENSE.pdf",
+  "documentation_url": "https://github.com/hudl/open-data/tree/master/doc",
+  "attribution_requirement": "State StatsBomb as the data source and use the StatsBomb logo (Media Pack) when publishing analysis based on the data.",
+  "terms_summary": [
+   "The data are provided for analysis and research; analysis and conclusions may be shared publicly (1.1).",
+   "The user may not edit, distort, distribute, reproduce, sell or provide the data to third parties (1.2.1).",
+   "No commercial exploitation of the data or of analysis derived from it (1.2.2).",
+   "Publications of analysis must be accredited with the StatsBomb brand logo (1.4).",
+   "The service is provided as is; StatsBomb may withdraw it at any time (2.1, 3.2)."
+  ],
+  "revision_at_verification": {
+   "status": "ok",
+   "commit_sha": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+   "commit_date": "2026-09-07T16:27:15Z",
+   "checked_via": "https://api.github.com/repos/hudl/open-data/commits/master"
+  }
+ },
+ "scope": {
+  "competition_id": 9,
+  "season_id": 281,
+  "competition_name": "1. Bundesliga",
+  "season_name": "2023/2024",
+  "focus_team": "Bayer Leverkusen",
+  "matches_published_for_season": 34,
+  "matches_analysed": 34,
+  "match_ids": [
+   3895052,
+   3895060,
+   3895067,
+   3895074,
+   3895086,
+   3895095,
+   3895107,
+   3895113,
+   3895121,
+   3895134,
+   3895139,
+   3895153,
+   3895158,
+   3895167,
+   3895180,
+   3895182,
+   3895194,
+   3895202,
+   3895210,
+   3895220,
+   3895232,
+   3895244,
+   3895250,
+   3895258,
+   3895266,
+   3895275,
+   3895286,
+   3895292,
+   3895302,
+   3895309,
+   3895320,
+   3895333,
+   3895340,
+   3895348
+  ],
+  "first_match_date": "2023-08-19",
+  "last_match_date": "2024-05-18"
+ },
+ "retrieval": {
+  "earliest_file_written_utc": "2026-11-01T16:47:55+00:00",
+  "latest_file_written_utc": "2026-11-01T16:48:38+00:00",
+  "files": 70,
+  "bytes": 120054924,
+  "failed_files": 0
+ },
+ "versions": {
+  "parser": "3.0.0",
+  "schema": "3.0.0",
+  "feature": "3.0.0"
+ },
+ "files": [
+  {
+   "path": "competitions.json",
+   "resource": "competitions",
+   "match_id": null,
+   "bytes": 34887,
+   "sha256": "e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/competitions.json",
+   "file_written_utc": "2026-11-01T16:47:55+00:00"
+  },
+  {
+   "path": "events/3895052.json",
+   "resource": "events",
+   "match_id": 3895052,
+   "bytes": 3205861,
+   "sha256": "ecc00b4e7ddd0154532329091d5d82fd7de4b9f6aa8da174788816001e40e605",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895052.json",
+   "file_written_utc": "2026-11-01T16:47:56+00:00"
+  },
+  {
+   "path": "events/3895060.json",
+   "resource": "events",
+   "match_id": 3895060,
+   "bytes": 3798711,
+   "sha256": "1b2fcf16823fbf04f4ae40492d492304f8d54fdb991cebc7fdcaa2e1d72e5585",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895060.json",
+   "file_written_utc": "2026-11-01T16:47:57+00:00"
+  },
+  {
+   "path": "events/3895067.json",
+   "resource": "events",
+   "match_id": 3895067,
+   "bytes": 3453122,
+   "sha256": "8bba4bec9d870aa5b88eab122ba50f33c89d038580893e330e9c0ec41e9a946a",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895067.json",
+   "file_written_utc": "2026-11-01T16:47:58+00:00"
+  },
+  {
+   "path": "events/3895074.json",
+   "resource": "events",
+   "match_id": 3895074,
+   "bytes": 3745841,
+   "sha256": "b43f2c87a77eeca368247ac290fa85297183c14f1a1eb7f5d9b335173205427d",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895074.json",
+   "file_written_utc": "2026-11-01T16:48:00+00:00"
+  },
+  {
+   "path": "events/3895086.json",
+   "resource": "events",
+   "match_id": 3895086,
+   "bytes": 3626424,
+   "sha256": "84d8ce36e84efbe1b168d39efe0b166c50a48da3cf587986a6455cbb06d6e119",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895086.json",
+   "file_written_utc": "2026-11-01T16:48:02+00:00"
+  },
+  {
+   "path": "events/3895095.json",
+   "resource": "events",
+   "match_id": 3895095,
+   "bytes": 3450715,
+   "sha256": "cf37c272322ea2daa3f102783d60dd637585eb029dda0e94e052ab9f5c648a29",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895095.json",
+   "file_written_utc": "2026-11-01T16:48:03+00:00"
+  },
+  {
+   "path": "events/3895107.json",
+   "resource": "events",
+   "match_id": 3895107,
+   "bytes": 3667154,
+   "sha256": "26f6dab51a13ad9877daae29da74bab0be7c5813743994c26e7f4de14719b58c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895107.json",
+   "file_written_utc": "2026-11-01T16:48:05+00:00"
+  },
+  {
+   "path": "events/3895113.json",
+   "resource": "events",
+   "match_id": 3895113,
+   "bytes": 3480257,
+   "sha256": "09b45ef8b6773cd3f6b6e4d4bdd7346e18c8225654a0a1a48ee7577062b5aad7",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895113.json",
+   "file_written_utc": "2026-11-01T16:48:05+00:00"
+  },
+  {
+   "path": "events/3895121.json",
+   "resource": "events",
+   "match_id": 3895121,
+   "bytes": 3338773,
+   "sha256": "de2b29ac79817c66c0089166a8078eeff234e18c72b1627b8d9eed3d0a4e587c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895121.json",
+   "file_written_utc": "2026-11-01T16:48:07+00:00"
+  },
+  {
+   "path": "events/3895134.json",
+   "resource": "events",
+   "match_id": 3895134,
+   "bytes": 3329183,
+   "sha256": "b1e71963d53ad18cdaa5f7c8133d8fe3882246716f7cad090db81e7812532327",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895134.json",
+   "file_written_utc": "2026-11-01T16:48:09+00:00"
+  },
+  {
+   "path": "events/3895139.json",
+   "resource": "events",
+   "match_id": 3895139,
+   "bytes": 3745931,
+   "sha256": "6f5e7165f5f8ff0b5619f81ed6695ac07e19093f68608a70da70c8976e114650",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895139.json",
+   "file_written_utc": "2026-11-01T16:48:10+00:00"
+  },
+  {
+   "path": "events/3895153.json",
+   "resource": "events",
+   "match_id": 3895153,
+   "bytes": 3878084,
+   "sha256": "ff08bf0f3c1d9717eb60a64571ba9aeb413f61475dd0d14529e39cb00cc47b6b",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895153.json",
+   "file_written_utc": "2026-11-01T16:48:12+00:00"
+  },
+  {
+   "path": "events/3895158.json",
+   "resource": "events",
+   "match_id": 3895158,
+   "bytes": 3390790,
+   "sha256": "0c5cd7dd15224d4faf9202997ce3839821478804d32dc7cea10b51b8badf54bc",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895158.json",
+   "file_written_utc": "2026-11-01T16:48:13+00:00"
+  },
+  {
+   "path": "events/3895167.json",
+   "resource": "events",
+   "match_id": 3895167,
+   "bytes": 3691034,
+   "sha256": "a3bfe843f8a95147dd9fdb8dcfb41bc3b940fa84a037aa5c5ef6340f52e87e6c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895167.json",
+   "file_written_utc": "2026-11-01T16:48:14+00:00"
+  },
+  {
+   "path": "events/3895180.json",
+   "resource": "events",
+   "match_id": 3895180,
+   "bytes": 3819332,
+   "sha256": "aeddc426aa8b7af3e7afdefab252e67819e045199bd95b18a2fa944e2a85999e",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895180.json",
+   "file_written_utc": "2026-11-01T16:48:16+00:00"
+  },
+  {
+   "path": "events/3895182.json",
+   "resource": "events",
+   "match_id": 3895182,
+   "bytes": 3448298,
+   "sha256": "b3f3f8a620647bdd66fdab4f57ea60492aedef5156eaa08af800be1f976c952b",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895182.json",
+   "file_written_utc": "2026-11-01T16:48:17+00:00"
+  },
+  {
+   "path": "events/3895194.json",
+   "resource": "events",
+   "match_id": 3895194,
+   "bytes": 3522975,
+   "sha256": "3404cacac2ec167e75064dd3855f8da236bdda068c0d900cdfc0fb36cc5ad188",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895194.json",
+   "file_written_utc": "2026-11-01T16:48:18+00:00"
+  },
+  {
+   "path": "events/3895202.json",
+   "resource": "events",
+   "match_id": 3895202,
+   "bytes": 3459624,
+   "sha256": "39fa9916efaaf66a639fe4872986d7192043ac974ab4816f998affc0a3db8e0b",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895202.json",
+   "file_written_utc": "2026-11-01T16:48:19+00:00"
+  },
+  {
+   "path": "events/3895210.json",
+   "resource": "events",
+   "match_id": 3895210,
+   "bytes": 4262536,
+   "sha256": "30e14ba83b6674b778d8d13b2307db5355181a5fd25cb15c5eb1b2f840827444",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895210.json",
+   "file_written_utc": "2026-11-01T16:48:20+00:00"
+  },
+  {
+   "path": "events/3895220.json",
+   "resource": "events",
+   "match_id": 3895220,
+   "bytes": 3679699,
+   "sha256": "3b09b6522dcff98c44ea55163ac977b513c177356b9bddb46dd30a3981bfef64",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895220.json",
+   "file_written_utc": "2026-11-01T16:48:21+00:00"
+  },
+  {
+   "path": "events/3895232.json",
+   "resource": "events",
+   "match_id": 3895232,
+   "bytes": 3576262,
+   "sha256": "71c47769f161da2a728cf2cefc32fdfc8ba9db81ac1e054488aaaae46f389f48",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895232.json",
+   "file_written_utc": "2026-11-01T16:48:22+00:00"
+  },
+  {
+   "path": "events/3895244.json",
+   "resource": "events",
+   "match_id": 3895244,
+   "bytes": 3419925,
+   "sha256": "b5415201274952e62d48231e2f4983673009cb6b62009c08604f0e490ae10040",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895244.json",
+   "file_written_utc": "2026-11-01T16:48:23+00:00"
+  },
+  {
+   "path": "events/3895250.json",
+   "resource": "events",
+   "match_id": 3895250,
+   "bytes": 3339893,
+   "sha256": "1a5c6a7614efda5c8431fc32cca5936a7ee552f315b44300780a2159a0406306",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895250.json",
+   "file_written_utc": "2026-11-01T16:48:25+00:00"
+  },
+  {
+   "path": "events/3895258.json",
+   "resource": "events",
+   "match_id": 3895258,
+   "bytes": 3370766,
+   "sha256": "3510b91fa0173e72bfe95d4f93af8e9534e9712ec53a553dcde4031ab1ef89fb",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895258.json",
+   "file_written_utc": "2026-11-01T16:48:25+00:00"
+  },
+  {
+   "path": "events/3895266.json",
+   "resource": "events",
+   "match_id": 3895266,
+   "bytes": 3534520,
+   "sha256": "b404b1b3a14f786a2b34c1f5f1d2bbd90b095c2740f6e47d2950e00c6eb5e1b8",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895266.json",
+   "file_written_utc": "2026-11-01T16:48:27+00:00"
+  },
+  {
+   "path": "events/3895275.json",
+   "resource": "events",
+   "match_id": 3895275,
+   "bytes": 3378505,
+   "sha256": "53f11b132bde1ab1c7a1e63ceb9d4cd790e9a44bc65209e664c8ab3ad2b5b5d8",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895275.json",
+   "file_written_utc": "2026-11-01T16:48:28+00:00"
+  },
+  {
+   "path": "events/3895286.json",
+   "resource": "events",
+   "match_id": 3895286,
+   "bytes": 3450915,
+   "sha256": "d2a8eba6cb9b41f012fd9546754e97d783cc18229cf1b793e0fae23979f388e7",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895286.json",
+   "file_written_utc": "2026-11-01T16:48:30+00:00"
+  },
+  {
+   "path": "events/3895292.json",
+   "resource": "events",
+   "match_id": 3895292,
+   "bytes": 3337887,
+   "sha256": "546f6f0d4f71b40f81ef82c45b4a19f652ca9152943f45f934b9faca8a5cb728",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895292.json",
+   "file_written_utc": "2026-11-01T16:48:31+00:00"
+  },
+  {
+   "path": "events/3895302.json",
+   "resource": "events",
+   "match_id": 3895302,
+   "bytes": 3630014,
+   "sha256": "47743ba159a4c89679faeee9cce1156312807f838311d453bea18f82e3a3a9d5",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895302.json",
+   "file_written_utc": "2026-11-01T16:48:32+00:00"
+  },
+  {
+   "path": "events/3895309.json",
+   "resource": "events",
+   "match_id": 3895309,
+   "bytes": 3347211,
+   "sha256": "20e5d981bcb0352348ba8b4236dd1ff43dad316de290e59b8207278e4cd00466",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895309.json",
+   "file_written_utc": "2026-11-01T16:48:33+00:00"
+  },
+  {
+   "path": "events/3895320.json",
+   "resource": "events",
+   "match_id": 3895320,
+   "bytes": 3274132,
+   "sha256": "87b2347238c7946d625b1ba2a20042aef2f906dafbd7a65c7624871b13ae2bce",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895320.json",
+   "file_written_utc": "2026-11-01T16:48:34+00:00"
+  },
+  {
+   "path": "events/3895333.json",
+   "resource": "events",
+   "match_id": 3895333,
+   "bytes": 3105531,
+   "sha256": "46aa0d7156256796a7c81f9661035d126c0ec0deda43783d0fb36bd906b60c15",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895333.json",
+   "file_written_utc": "2026-11-01T16:48:36+00:00"
+  },
+  {
+   "path": "events/3895340.json",
+   "resource": "events",
+   "match_id": 3895340,
+   "bytes": 2896049,
+   "sha256": "0d4780e3f067882d0bc01477fd71e817f109e14112b61a48df1739a0e8eb8faa",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895340.json",
+   "file_written_utc": "2026-11-01T16:48:36+00:00"
+  },
+  {
+   "path": "events/3895348.json",
+   "resource": "events",
+   "match_id": 3895348,
+   "bytes": 3567849,
+   "sha256": "380a71237d8be1baa5a1dc3ba8bb9c8966e5234bc8d3757f74c384bf9ff3345d",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/events/3895348.json",
+   "file_written_utc": "2026-11-01T16:48:37+00:00"
+  },
+  {
+   "path": "lineups/3895052.json",
+   "resource": "lineups",
+   "match_id": 3895052,
+   "bytes": 22124,
+   "sha256": "485e5e4f06136578a5dd18648397808110978cadb36a63cbe39acf0de613c18b",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895052.json",
+   "file_written_utc": "2026-11-01T16:47:56+00:00"
+  },
+  {
+   "path": "lineups/3895060.json",
+   "resource": "lineups",
+   "match_id": 3895060,
+   "bytes": 24228,
+   "sha256": "a94f051cea4356e4a09741cb737d5e6fd80b0b6611bdebb06e25d0901bfe9213",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895060.json",
+   "file_written_utc": "2026-11-01T16:47:58+00:00"
+  },
+  {
+   "path": "lineups/3895067.json",
+   "resource": "lineups",
+   "match_id": 3895067,
+   "bytes": 23982,
+   "sha256": "b8604475df28cfb26c207e3aec5342381ff540045e7d94bebe3d6cfc52e044ed",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895067.json",
+   "file_written_utc": "2026-11-01T16:47:59+00:00"
+  },
+  {
+   "path": "lineups/3895074.json",
+   "resource": "lineups",
+   "match_id": 3895074,
+   "bytes": 25950,
+   "sha256": "bbc0bfef31c5c59ec00880bc8b54e56b7095668ea56b41cdc37920dd780099a0",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895074.json",
+   "file_written_utc": "2026-11-01T16:48:00+00:00"
+  },
+  {
+   "path": "lineups/3895086.json",
+   "resource": "lineups",
+   "match_id": 3895086,
+   "bytes": 19970,
+   "sha256": "940ac000874a81f5e8b7d14dc08c18c5d746df91e84a900a372dccb1954b82fe",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895086.json",
+   "file_written_utc": "2026-11-01T16:48:02+00:00"
+  },
+  {
+   "path": "lineups/3895095.json",
+   "resource": "lineups",
+   "match_id": 3895095,
+   "bytes": 21665,
+   "sha256": "bfaac257eac74ca9f365bdb9838c88af8f3a52bb01b3fa83eb5b6ec86d37dba3",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895095.json",
+   "file_written_utc": "2026-11-01T16:48:04+00:00"
+  },
+  {
+   "path": "lineups/3895107.json",
+   "resource": "lineups",
+   "match_id": 3895107,
+   "bytes": 20169,
+   "sha256": "044e0e6bfeef5f0c1fc3c2c54e6e572d88e058db33c207ca69e004ad8c64b545",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895107.json",
+   "file_written_utc": "2026-11-01T16:48:05+00:00"
+  },
+  {
+   "path": "lineups/3895113.json",
+   "resource": "lineups",
+   "match_id": 3895113,
+   "bytes": 20214,
+   "sha256": "dc3f834779dc6a89ff3047ea51152dbebeb6544689c50e816eb3ad224910745a",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895113.json",
+   "file_written_utc": "2026-11-01T16:48:06+00:00"
+  },
+  {
+   "path": "lineups/3895121.json",
+   "resource": "lineups",
+   "match_id": 3895121,
+   "bytes": 18007,
+   "sha256": "542eacefc8ed564535c30a60d6c966079db75257d30b83fb485a5d785db391bb",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895121.json",
+   "file_written_utc": "2026-11-01T16:48:08+00:00"
+  },
+  {
+   "path": "lineups/3895134.json",
+   "resource": "lineups",
+   "match_id": 3895134,
+   "bytes": 20106,
+   "sha256": "2e400bcf6c31db788d04eab6d4e92cadda6601a566167dfa37b2104165cf14b4",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895134.json",
+   "file_written_utc": "2026-11-01T16:48:10+00:00"
+  },
+  {
+   "path": "lineups/3895139.json",
+   "resource": "lineups",
+   "match_id": 3895139,
+   "bytes": 19384,
+   "sha256": "de98e08f87c2b8232b4c421e24eb7aaf0e16706a5679abe9d81c2d9dac7cac82",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895139.json",
+   "file_written_utc": "2026-11-01T16:48:11+00:00"
+  },
+  {
+   "path": "lineups/3895153.json",
+   "resource": "lineups",
+   "match_id": 3895153,
+   "bytes": 21528,
+   "sha256": "e33ee6a3c5fca8468c0289745988c570d32b6f5b79cf66db7c28fdeb9e83506d",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895153.json",
+   "file_written_utc": "2026-11-01T16:48:12+00:00"
+  },
+  {
+   "path": "lineups/3895158.json",
+   "resource": "lineups",
+   "match_id": 3895158,
+   "bytes": 20500,
+   "sha256": "c38cba8c021a86daeb2490e25024d243e1390a04cae9755b20c399e488e946a5",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895158.json",
+   "file_written_utc": "2026-11-01T16:48:13+00:00"
+  },
+  {
+   "path": "lineups/3895167.json",
+   "resource": "lineups",
+   "match_id": 3895167,
+   "bytes": 22330,
+   "sha256": "1d7d55fe5961c80c5bf350e655afbae3b581274dfc9b2f44a42d7119343fbeae",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895167.json",
+   "file_written_utc": "2026-11-01T16:48:15+00:00"
+  },
+  {
+   "path": "lineups/3895180.json",
+   "resource": "lineups",
+   "match_id": 3895180,
+   "bytes": 19274,
+   "sha256": "55f674954ebda5f1e17ae0e68dcbc301f1357a36b4ce06e0dedce91e21ea3bea",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895180.json",
+   "file_written_utc": "2026-11-01T16:48:16+00:00"
+  },
+  {
+   "path": "lineups/3895182.json",
+   "resource": "lineups",
+   "match_id": 3895182,
+   "bytes": 25586,
+   "sha256": "6cf13075e0a033f7dbda2658e16134a9351593b59d79fbd530960afc0f5da1a4",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895182.json",
+   "file_written_utc": "2026-11-01T16:48:17+00:00"
+  },
+  {
+   "path": "lineups/3895194.json",
+   "resource": "lineups",
+   "match_id": 3895194,
+   "bytes": 18410,
+   "sha256": "7b3c46fee207e0494e509bc3877a6132f9c1143cf6c0695ba2e4474cdb2c3122",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895194.json",
+   "file_written_utc": "2026-11-01T16:48:18+00:00"
+  },
+  {
+   "path": "lineups/3895202.json",
+   "resource": "lineups",
+   "match_id": 3895202,
+   "bytes": 19697,
+   "sha256": "4d19fa5c41aed00a962c068f2cf132a143a477b3cbd70bda611b6d535855ba3f",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895202.json",
+   "file_written_utc": "2026-11-01T16:48:19+00:00"
+  },
+  {
+   "path": "lineups/3895210.json",
+   "resource": "lineups",
+   "match_id": 3895210,
+   "bytes": 18749,
+   "sha256": "16b8e3ea6cf89702972adafd645314f12b88abdc82eedfe7d8570354e6c02b47",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895210.json",
+   "file_written_utc": "2026-11-01T16:48:20+00:00"
+  },
+  {
+   "path": "lineups/3895220.json",
+   "resource": "lineups",
+   "match_id": 3895220,
+   "bytes": 23609,
+   "sha256": "091e5dfcad215128d23e268770b4c4f92854e3c0b46bc1b760c3984542fc5817",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895220.json",
+   "file_written_utc": "2026-11-01T16:48:21+00:00"
+  },
+  {
+   "path": "lineups/3895232.json",
+   "resource": "lineups",
+   "match_id": 3895232,
+   "bytes": 24080,
+   "sha256": "6f93fb92566158c0005cffc9c86fc739a22d414ec29997d99ea457011d586383",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895232.json",
+   "file_written_utc": "2026-11-01T16:48:22+00:00"
+  },
+  {
+   "path": "lineups/3895244.json",
+   "resource": "lineups",
+   "match_id": 3895244,
+   "bytes": 22035,
+   "sha256": "65e5d203e48fd3b209321255477ef171e6ade5a11aada85761b9fa54d1cce637",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895244.json",
+   "file_written_utc": "2026-11-01T16:48:23+00:00"
+  },
+  {
+   "path": "lineups/3895250.json",
+   "resource": "lineups",
+   "match_id": 3895250,
+   "bytes": 22833,
+   "sha256": "4086bd1a576e5a5bd7808698ecbafc58bf61251c1bf1605dc37e5e09835a8c17",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895250.json",
+   "file_written_utc": "2026-11-01T16:48:25+00:00"
+  },
+  {
+   "path": "lineups/3895258.json",
+   "resource": "lineups",
+   "match_id": 3895258,
+   "bytes": 22786,
+   "sha256": "2f039f67f671df13c878b8f7ab81ce90a3b50cb46a3fc6815b480c1b9ceb9605",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895258.json",
+   "file_written_utc": "2026-11-01T16:48:26+00:00"
+  },
+  {
+   "path": "lineups/3895266.json",
+   "resource": "lineups",
+   "match_id": 3895266,
+   "bytes": 25146,
+   "sha256": "007fb23df34bb263a3ff51c249434ee3f893c58912e3f6bf84f3b3f7e02adbf3",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895266.json",
+   "file_written_utc": "2026-11-01T16:48:27+00:00"
+  },
+  {
+   "path": "lineups/3895275.json",
+   "resource": "lineups",
+   "match_id": 3895275,
+   "bytes": 19835,
+   "sha256": "601e8e85f4c9aea75349a9c9ba4a912cf644863fbd3ba427dae5c4d09a6d125c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895275.json",
+   "file_written_utc": "2026-11-01T16:48:28+00:00"
+  },
+  {
+   "path": "lineups/3895286.json",
+   "resource": "lineups",
+   "match_id": 3895286,
+   "bytes": 20039,
+   "sha256": "3f8ed59025d58983c8a7e4bd5ba368ebcdc76a064d4ebbfc5e63ddbd4d659393",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895286.json",
+   "file_written_utc": "2026-11-01T16:48:30+00:00"
+  },
+  {
+   "path": "lineups/3895292.json",
+   "resource": "lineups",
+   "match_id": 3895292,
+   "bytes": 21680,
+   "sha256": "c41011075126da5d90d887b1d1bb22fa8dfc55c2ce6556d0054436a674adba14",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895292.json",
+   "file_written_utc": "2026-11-01T16:48:31+00:00"
+  },
+  {
+   "path": "lineups/3895302.json",
+   "resource": "lineups",
+   "match_id": 3895302,
+   "bytes": 18399,
+   "sha256": "186ed4ecd2646d7afa6f461483a810b4e68cce0cf24b8db3e8d1456ff44ffb30",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895302.json",
+   "file_written_utc": "2026-11-01T16:48:32+00:00"
+  },
+  {
+   "path": "lineups/3895309.json",
+   "resource": "lineups",
+   "match_id": 3895309,
+   "bytes": 24202,
+   "sha256": "cb3e839b4d843dbfa0bfe2638d58bd7cfc148a5d2cb56030c2133c54654636a1",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895309.json",
+   "file_written_utc": "2026-11-01T16:48:34+00:00"
+  },
+  {
+   "path": "lineups/3895320.json",
+   "resource": "lineups",
+   "match_id": 3895320,
+   "bytes": 22331,
+   "sha256": "c55ae6b15b12ebb0ae0108014b21cefcfd5948852bddd05caa55c61b314c0d85",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895320.json",
+   "file_written_utc": "2026-11-01T16:48:35+00:00"
+  },
+  {
+   "path": "lineups/3895333.json",
+   "resource": "lineups",
+   "match_id": 3895333,
+   "bytes": 19138,
+   "sha256": "0eea3950d77afcc8d4239d77bf9b3b2262be96afee0f14730377d91cc67aa54e",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895333.json",
+   "file_written_utc": "2026-11-01T16:48:36+00:00"
+  },
+  {
+   "path": "lineups/3895340.json",
+   "resource": "lineups",
+   "match_id": 3895340,
+   "bytes": 24925,
+   "sha256": "21d7905a595a9b9de41a7d2ddbe2225af08bf1b1fb5e5b8a75f3648427ff104b",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895340.json",
+   "file_written_utc": "2026-11-01T16:48:37+00:00"
+  },
+  {
+   "path": "lineups/3895348.json",
+   "resource": "lineups",
+   "match_id": 3895348,
+   "bytes": 20244,
+   "sha256": "8dc0a37bc33360ec17e9b9605708cafcacd7b80fbd369c1e8b4e3319bf6e3b6c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/lineups/3895348.json",
+   "file_written_utc": "2026-11-01T16:48:38+00:00"
+  },
+  {
+   "path": "matches/9/281.json",
+   "resource": "matches",
+   "match_id": null,
+   "bytes": 63079,
+   "sha256": "13dff90f126d9f73da410ae3292b2773744657d3ba968a2b7a9c02135033581c",
+   "status": "ok",
+   "source_url": "https://raw.githubusercontent.com/hudl/open-data/master/data/matches/9/281.json",
+   "file_written_utc": "2026-11-01T16:47:55+00:00"
+  }
+ ],
+ "tables": {
+  "matches": {
+   "rows": 34,
+   "columns": 23
+  },
+  "managers": {
+   "rows": 68,
+   "columns": 8
+  },
+  "events": {
+   "rows": 137765,
+   "columns": 54
+  },
+  "squads": {
+   "rows": 1353,
+   "columns": 14
+  },
+  "period_bounds": {
+   "rows": 68,
+   "columns": 7
+  },
+  "appearances": {
+   "rows": 1353,
+   "columns": 26
+  },
+  "spells": {
+   "rows": 1049,
+   "columns": 14
+  },
+  "substitutions_raw": {
+   "rows": 301,
+   "columns": 15
+  },
+  "goals": {
+   "rows": 113,
+   "columns": 8
+  },
+  "sending_offs": {
+   "rows": 5,
+   "columns": 9
+  },
+  "formations": {
+   "rows": 195,
+   "columns": 10
+  },
+  "parse_issues": {
+   "rows": 0,
+   "columns": 0
+  },
+  "flags": {
+   "rows": 137765,
+   "columns": 98
+  },
+  "pms": {
+   "rows": 1049,
+   "columns": 77
+  },
+  "season": {
+   "rows": 377,
+   "columns": 106
+  },
+  "season_pct": {
+   "rows": 377,
+   "columns": 134
+  },
+  "team_stats": {
+   "rows": 68,
+   "columns": 47
+  },
+  "workload": {
+   "rows": 1353,
+   "columns": 15
+  },
+  "subs": {
+   "rows": 301,
+   "columns": 41
+  }
+ },
+ "validation": {
+  "rules_passed": 16,
+  "rules_total": 16,
+  "rules": [
+   {
+    "check": "Duplicate event IDs",
+    "rule": "event_id unique",
+    "violations": 0,
+    "checked": 137765,
+    "status": "PASS"
+   },
+   {
+    "check": "Duplicate squad rows",
+    "rule": "one row per player per match",
+    "violations": 0,
+    "checked": 1353,
+    "status": "PASS"
+   },
+   {
+    "check": "Event coordinates outside 120x80",
+    "rule": "0<=x<=120, 0<=y<=80",
+    "violations": 0,
+    "checked": 136803,
+    "status": "PASS"
+   },
+   {
+    "check": "End coordinates outside pitch (+2 tolerance)",
+    "rule": "end location on/near pitch",
+    "violations": 0,
+    "checked": 72499,
+    "status": "PASS"
+   },
+   {
+    "check": "xG outside [0,1]",
+    "rule": "0<=statsbomb_xg<=1",
+    "violations": 0,
+    "checked": 916,
+    "status": "PASS"
+   },
+   {
+    "check": "Negative minutes played",
+    "rule": "minutes >= 0",
+    "violations": 0,
+    "checked": 1353,
+    "status": "PASS"
+   },
+   {
+    "check": "Matches with unordered event index",
+    "rule": "event index increasing",
+    "violations": 0,
+    "checked": 34,
+    "status": "PASS"
+   },
+   {
+    "check": "Clock steps backwards >5s within period",
+    "rule": "timestamps ordered (flag only)",
+    "violations": 0,
+    "checked": 137765,
+    "status": "PASS"
+   },
+   {
+    "check": "Team-matches without exactly 11 starters",
+    "rule": "XI has 11 players",
+    "violations": 0,
+    "checked": 68,
+    "status": "PASS"
+   },
+   {
+    "check": "Team-matches without exactly one starting GK",
+    "rule": "one goalkeeper slot (event-position based)",
+    "violations": 0,
+    "checked": 68,
+    "status": "PASS"
+   },
+   {
+    "check": "Player selected twice in same XI",
+    "rule": "XI players distinct",
+    "violations": 0,
+    "checked": 748,
+    "status": "PASS"
+   },
+   {
+    "check": "Substitutions missing team/player/time",
+    "rule": "complete substitution records",
+    "violations": 0,
+    "checked": 301,
+    "status": "PASS"
+   },
+   {
+    "check": "Overlapping on-pitch spells",
+    "rule": "player cannot be on pitch twice simultaneously",
+    "violations": 0,
+    "checked": 1049,
+    "status": "PASS"
+   },
+   {
+    "check": "Event goals != published score",
+    "rule": "goal events reconcile to final score",
+    "violations": 0,
+    "checked": 34,
+    "status": "PASS"
+   },
+   {
+    "check": "Event players missing from matchday squad",
+    "rule": "player references resolve",
+    "violations": 0,
+    "checked": 1045,
+    "status": "PASS"
+   },
+   {
+    "check": "Appearances with unknown minutes",
+    "rule": "minutes derivable from events",
+    "violations": 0,
+    "checked": 1353,
+    "status": "PASS"
+   }
+  ],
+  "contracts_passed": 14,
+  "contracts_total": 14
+ },
+ "transformations": [
+  "parse matches, lineups and events JSON into flat canonical tables (no raw row deleted)",
+  "add an elapsed-minute clock from period bounds",
+  "reconstruct on-pitch spells and minutes from Starting XI, Substitution and sending-off events",
+  "derive event flags (progressive actions, box touches, key passes, ...)",
+  "aggregate to player-match, player-season (per 90, role percentiles) and team-match tables",
+  "enrich substitutions with score state, timing band, roles and rule windows"
+ ],
+ "derived_table_dependencies": {
+  "appearances": [
+   "events",
+   "squads",
+   "period_bounds"
+  ],
+  "spells": [
+   "events",
+   "period_bounds"
+  ],
+  "goals": [
+   "events",
+   "matches"
+  ],
+  "formations": [
+   "events"
+  ],
+  "flags": [
+   "events"
+  ],
+  "pms": [
+   "flags",
+   "appearances",
+   "matches"
+  ],
+  "season": [
+   "pms",
+   "appearances"
+  ],
+  "season_pct": [
+   "season"
+  ],
+  "team_stats": [
+   "flags",
+   "matches",
+   "goals",
+   "formations",
+   "managers"
+  ],
+  "workload": [
+   "appearances",
+   "matches"
+  ],
+  "subs": [
+   "substitutions_raw",
+   "goals",
+   "sending_offs",
+   "appearances",
+   "team_stats"
+  ]
+ },
+ "table_contracts": {
+  "matches": {
+   "grain": "one row per match",
+   "key": [
+    "match_id"
+   ],
+   "origin": "source"
+  },
+  "managers": {
+   "grain": "one row per match and team",
+   "key": [
+    "match_id",
+    "team_id"
+   ],
+   "origin": "source"
+  },
+  "events": {
+   "grain": "one row per event",
+   "key": [
+    "event_id"
+   ],
+   "origin": "source"
+  },
+  "squads": {
+   "grain": "one row per match, team and squad player",
+   "key": [
+    "match_id",
+    "team_id",
+    "player_id"
+   ],
+   "origin": "source"
+  },
+  "appearances": {
+   "grain": "one row per match and squad player",
+   "key": [
+    "match_id",
+    "player_id"
+   ],
+   "origin": "derived"
+  },
+  "spells": {
+   "grain": "one row per continuous on-pitch spell",
+   "key": [
+    "match_id",
+    "player_id",
+    "start"
+   ],
+   "origin": "derived"
+  },
+  "goals": {
+   "grain": "one row per goal",
+   "key": [
+    "match_id",
+    "index"
+   ],
+   "origin": "derived"
+  },
+  "formations": {
+   "grain": "one row per formation record",
+   "key": [
+    "match_id",
+    "team_id",
+    "index"
+   ],
+   "origin": "source"
+  },
+  "flags": {
+   "grain": "one row per event",
+   "key": [
+    "event_id"
+   ],
+   "origin": "derived"
+  },
+  "pms": {
+   "grain": "one row per player and match",
+   "key": [
+    "match_id",
+    "player_id"
+   ],
+   "origin": "derived"
+  },
+  "season_pct": {
+   "grain": "one row per player and team",
+   "key": [
+    "player_id",
+    "team_id"
+   ],
+   "origin": "derived"
+  },
+  "team_stats": {
+   "grain": "one row per team and match",
+   "key": [
+    "match_id",
+    "team_id"
+   ],
+   "origin": "derived"
+  },
+  "workload": {
+   "grain": "one row per player and match",
+   "key": [
+    "match_id",
+    "player_id"
+   ],
+   "origin": "derived"
+  },
+  "subs": {
+   "grain": "one row per substitution",
+   "key": [
+    "match_id",
+    "event_id"
+   ],
+   "origin": "derived"
+  }
+ },
+ "data_limitations": [
+  "Team-centric sample: every analysed match involves the focus team; opponents appear twice (home and away).",
+  "League matches only: no cup, European or international fixtures.",
+  "No player age, height, injury, fitness, GPS, tracking, salary or market-value data.",
+  "No post-shot xG; StatsBomb xG is a model output of the provider.",
+  "StatsBomb 360 freeze frames are published for these matches but are optional and not loaded by default.",
+  "Manager identity is the name recorded per match; tenure outside the analysed matches is unknown."
+ ]
+}

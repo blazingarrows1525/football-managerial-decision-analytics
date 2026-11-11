@@ -1,5 +1,21 @@
-# Raw data cache (downloaded by the notebook) and local tooling
-data/
+# Source data are never committed: the StatsBomb user agreement does not allow redistribution.
+# The pipeline downloads the files on first run and caches them here.
+data/raw/
+data/interim/
+data/processed/
+data/external/
+!data/external/.gitkeep
+# Synthetic-fixture outputs and local tooling
+data/manifest/synthetic/
+artifacts/synthetic/
+artifacts/exports/
 __pycache__/
+*.py[cod]
 .ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
 .claude/
+.venv/
+venv/
+.streamlit/secrets.toml
+*.log
