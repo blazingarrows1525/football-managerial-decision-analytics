@@ -447,9 +447,9 @@ def build_appearances(events: pd.DataFrame, squads: pd.DataFrame, bounds: pd.Dat
                            "issue": "lineup file shows positions but player absent from event timeline",
                            "action": "flagged; minutes unknown"})
         app = app.drop(columns="_merge")
-        app["appeared"] = app["appeared"].fillna(False).astype(bool)
-        app["is_starter"] = app["is_starter"].fillna(False).astype(bool)
-        app["sent_off"] = app["sent_off"].fillna(False).astype(bool)
+        app["appeared"] = app["appeared"].astype("boolean").fillna(False).astype(bool)
+        app["is_starter"] = app["is_starter"].astype("boolean").fillna(False).astype(bool)
+        app["sent_off"] = app["sent_off"].astype("boolean").fillna(False).astype(bool)
         unused = ~app["appeared"]
         app.loc[unused, "minutes_played"] = 0.0
         app.loc[unused, "minutes_flag"] = "unused_substitute"

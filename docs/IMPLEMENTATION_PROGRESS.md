@@ -64,7 +64,7 @@ group, no mutation, watermark, export), Streamlit `AppTest` of every page and vi
 data, repository hygiene. Tests marked `real_data` skip automatically when the raw cache is absent (as in CI).
 
 `.github/workflows/ci.yml` runs lint, the suite, a notebook smoke run and a report build on the synthetic
-fixture for Python 3.10 and 3.12. **It has not run on GitHub yet** — it will on the next push.
+fixture for Python 3.10 and 3.12 (results below).
 
 ## Phase 6 — Clean-environment install
 
@@ -72,6 +72,24 @@ A fresh virtual environment installed `requirements.txt` without errors and reso
 (streamlit 1.65.0, pandas 2.3.3, numpy 2.2.6, scikit-learn 1.7.2, plotly 6.9.0, matplotlib 3.10.9). Every chart
 was validated there: **271 available, 2 unavailable (the SHAP charts — `shap` is an optional extra), 5 not
 implemented, 0 failed.**
+
+### First CI run and the fixes it led to
+
+The first GitHub Actions run (commit `5e83fc6`) **failed** on both Python versions. CI installs newer
+packages than the local environment, and two portability problems surfaced:
+
+1. pandas 2.3 deprecates silent downcasting in `fillna` on object columns; three lines in
+   `src/data/parsers.py` triggered it, and the test configuration turns such warnings into errors. Fixed with
+   dtype-safe fills; every result is unchanged (460 players, 90 points, 74.8 xPts, F1 0.811, 77.7%, 82.5%).
+2. Streamlit 1.65 discards widget values when the page changes, so global filters reset on navigation. The
+   filters now live in plain session keys and the widgets are bound to them through shadow keys.
+
+After the fixes, the full suite passes on both stacks:
+
+| Environment | Command | Result |
+|---|---|---|
+| local: Python 3.10.11, streamlit 1.55, pandas 2.1.4, numpy 1.26 | `pytest` | **521 passed** |
+| clean venv: streamlit 1.65, pandas 2.3.3, numpy 2.2.6, scikit-learn 1.7.2 | `FMA_DATA_MODE=DEMO_SYNTHETIC pytest` | **521 passed** |
 
 ## Phase 7 — Notebooks and documents
 

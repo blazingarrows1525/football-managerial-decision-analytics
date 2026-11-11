@@ -56,6 +56,22 @@ def persist_widget_state() -> None:
             st.session_state[key] = st.session_state[key]
 
 
+def bound(key: str) -> dict[str, Any]:
+    """Keyword arguments that bind a widget to the canonical session value ``key``.
+
+    The widget uses a shadow key (``_w`` + key) that is refreshed from the canonical value on every run, and a
+    change callback copies the widget value back. Canonical keys are ordinary session state, so they survive page
+    changes whatever the Streamlit version does with the state of widgets that belong to another page.
+    """
+    shadow = "_w" + key
+    st.session_state[shadow] = st.session_state.get(key)
+
+    def _copy() -> None:
+        st.session_state[key] = st.session_state[shadow]
+
+    return {"key": shadow, "on_change": _copy}
+
+
 def init_state(ws: Workspace) -> None:
     """Fill session state with defaults once; widget keys stay stable across pages."""
     for k, v in DEFAULTS.items():

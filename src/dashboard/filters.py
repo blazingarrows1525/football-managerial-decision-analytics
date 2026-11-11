@@ -26,19 +26,19 @@ def sidebar(base: Workspace) -> None:
     with st.sidebar:
         st.markdown("#### Global filters")
         teams = base.teams()
-        st.selectbox("Team", teams, key="f_team",
+        st.selectbox("Team", teams, **state.bound("f_team"),
                      help="Every analysed match involves the focus team; other teams have two matches.")
         tm_all = base.team_matches(st.session_state["f_team"])
-        st.segmented_control("Venue", state.VENUES, key="f_venue")
-        st.multiselect("Result", ["W", "D", "L"], key="f_results", placeholder="All results")
-        st.multiselect("Opponent", sorted(tm_all["opponent"].unique()), key="f_opponents",
+        st.segmented_control("Venue", state.VENUES, **state.bound("f_venue"))
+        st.multiselect("Result", ["W", "D", "L"], **state.bound("f_results"), placeholder="All results")
+        st.multiselect("Opponent", sorted(tm_all["opponent"].unique()), **state.bound("f_opponents"),
                        placeholder="All opponents")
         if len(tm_all):
             lo, hi = tm_all["match_date"].min().date(), tm_all["match_date"].max().date()
             if not st.session_state.get("f_dates"):
                 st.session_state["f_dates"] = (lo, hi)
-            st.date_input("Match dates", key="f_dates", min_value=lo, max_value=hi)
-        st.slider("Minimum minutes (per-90 and percentile comparisons)", 0, 1500, step=30, key="f_min_minutes",
+            st.date_input("Match dates", **state.bound("f_dates"), min_value=lo, max_value=hi)
+        st.slider("Minimum minutes (per-90 and percentile comparisons)", 0, 1500, step=30, **state.bound("f_min_minutes"),
                   help="Players below the threshold are excluded from rankings and distributions.")
         tm = state.scope_matches(base)
         st.caption(f"{len(tm)} of {len(tm_all)} matches in scope")

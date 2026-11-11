@@ -78,7 +78,7 @@ def start(title: str, subtitle: str, eyebrow: str = "") -> tuple[Workspace, Work
         st.title(title)
         st.markdown(f'<div class="fma-sub">{subtitle}</div>', unsafe_allow_html=True)
     with c2:
-        st.toggle("Presentation mode", key="f_presentation",
+        st.toggle("Presentation mode", **state.bound("f_presentation"),
                   help="Hides the sidebar and technical panels and enlarges labels for a demo.")
     st.markdown(f'<div class="fma-scope">Scope: {state.filter_summary(base, tm)} · historical data, not a live '
                 f'feed</div>', unsafe_allow_html=True)
