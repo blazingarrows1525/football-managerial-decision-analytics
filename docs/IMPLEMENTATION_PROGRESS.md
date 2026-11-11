@@ -91,6 +91,9 @@ After the fixes, the full suite passes on both stacks:
 | local: Python 3.10.11, streamlit 1.55, pandas 2.1.4, numpy 1.26 | `pytest` | **521 passed** |
 | clean venv: streamlit 1.65, pandas 2.3.3, numpy 2.2.6, scikit-learn 1.7.2 | `FMA_DATA_MODE=DEMO_SYNTHETIC pytest` | **521 passed** |
 
+Second CI run (commit `63ed82b`, run 43019875163): **passed** on Python 3.10 and 3.12 — lint, the full suite
+on the synthetic fixture, the notebook smoke run and the offline report build.
+
 ## Phase 7 — Notebooks and documents
 
 - `scripts/build_notebooks.py` generates seven chapters and the main notebook; `scripts/run_notebooks.py`
