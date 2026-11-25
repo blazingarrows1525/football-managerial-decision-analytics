@@ -1,5 +1,6 @@
 # Football Managerial Decision Analytics
 live streamlit dashboard - https://zizouhenry.streamlit.app/
+
 **Big Data Visualization and Analytics** — an evidence-first study of how football event data can support
 managerial decisions (starting XI, role fit, tactics, substitutions, rotation), built on real
 [StatsBomb Open Data](https://github.com/hudl/open-data) for the 2023/24 1. Bundesliga: the 34 published
